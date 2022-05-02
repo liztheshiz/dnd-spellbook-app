@@ -1,6 +1,19 @@
-// Variables
-let favoriteFood='parmesan cheese';
+let pokemonList = [];
 
+pokemonList[0] = {
+	name: 'Charizard',
+	height: 1.7,
+	types: ['fire', 'flying']
+};
 
-alert('Hello world');
-document.write(favoriteFood);
+pokemonList[1] = {
+	name: 'Mankey',
+	height: 0.5,
+	types: ['fighting']
+};
+
+pokemonList[2] = {
+	name: 'Piloswine',
+	height: 1.1,
+	types: ['ice', 'ground']
+};
