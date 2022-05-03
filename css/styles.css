@@ -9,6 +9,18 @@
   --bold: 700;
 }
 
+
+
+* {
+	box-sizing: border-box;
+}
+
+
+
+/* 	>>><<<
+		GENERAL ELEMENTS
+		>>><<< */
+
 body {
 	background-color: var(--background-color);
 	font-family: 'Karla', sans-serif;
