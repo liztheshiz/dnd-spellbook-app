@@ -6,7 +6,7 @@ let pokemonList = [
 ];
 
 // Write list of Pokemon in pokemonList on screen
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < pokemonList.length; i++) {
 	document.write(`${pokemonList[i].name} (height: ${pokemonList[i].height})`);
 	if (pokemonList[i].height >= 1.5) {
 		document.write(` - Wow, that's big!`);
