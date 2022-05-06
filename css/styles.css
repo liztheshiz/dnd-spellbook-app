@@ -18,40 +18,51 @@
 
 
 /* 	>>><<<
-		GENERAL ELEMENTS
-		>>><<< */
+	GENERAL ELEMENTS
+	>>><<< */
 
 body {
 	background-color: var(--background-color);
 	font-family: 'Karla', sans-serif;
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 30px;
 	color: var(--dark-grey);
 	line-height: 1.4;
 }
 
 h1 {
-	font-size: 30px;
+	font-size: 60px;
  	font-weight: var(--bold);
  	color: var(--primary-color);
 }
 
 h2 {
- 	font-size: 24px;
+ 	font-size: 45px;
  	font-weight: var(--bold);
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 40px;
   font-weight: var(--bold);
+}
+
+main {
+	margin-top: 100px;
 }
 
 
 
 .title {
 	background-color: var(--secondary-color);
-	margin: 15px 10px;
-	max-width: 175px;
-	border-radius: 30px;
+	margin: 15px auto;
+	max-width: 325px;
+	border-radius: 50px;
 	text-align: center;
+}
+
+#pokemon-list {
+	margin: 50px auto 0;
+	padding-left: 150px;
+	max-width: 700px;
+	text-align: left;
 }
