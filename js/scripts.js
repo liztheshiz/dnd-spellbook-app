@@ -20,7 +20,10 @@ let pokemonRepository = (function() {
 		}
 	}
 
-	return {add, getAll}
+	// Returns Pokemon object with given name
+	function findPokemon(name) {
+		let givenPokemon = pokemonList.filter(element => element.name === name);
+		// Returns either single Pokemon object, or array of objects if >1 Pokemon with same name
 })();
 
 // Print list of Pokemon in pokemonList on on screen in pokemon-list
