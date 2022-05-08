@@ -23,7 +23,7 @@ let pokemonRepository = (function() {
 	return {add, getAll}
 })();
 
-// Print list of Pokemon in pokemonList in pokemon-list
+// Print list of Pokemon in pokemonList on on screen in pokemon-list
 pokemonRepository.getAll().forEach(function(pokemon) {
 	document.getElementById('pokemon-list').innerHTML += `${pokemon.name} (height: ${pokemon.height})`;
 	if (pokemon.height >= 1.5) {
