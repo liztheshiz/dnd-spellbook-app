@@ -6,12 +6,18 @@ let pokemonRepository = (function() {
 		{name: 'Piloswine', height: 1.1, types: ['ice', 'ground']}
 	];
 
+	// Returns pokemonList
 	function getAll() {
 		return pokemonList;
 	}
 
+	// Adds new item to pokemonList
 	function add(item){
-		pokemonList.push(item);
+		// Only adds object types with keys found in pokemonKeys
+		let pokemonKeys = ['name', 'height', 'types'];
+		if ((typeof item === 'object') && (Object.keys(item).every((element, i) => element === pokemonKeys[i]))) {
+			pokemonList.push(item);
+		}
 	}
 
 	return {add, getAll}
