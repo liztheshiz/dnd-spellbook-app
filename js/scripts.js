@@ -36,9 +36,9 @@ let pokemonRepository = (function() {
 
 // Print list of Pokemon in pokemonList on on screen in pokemon-list
 pokemonRepository.getAll().forEach(function(pokemon) {
-	document.getElementById('pokemon-list').innerHTML += `${pokemon.name} (height: ${pokemon.height})`;
+	document.querySelector('#pokemon-list').innerHTML += `${pokemon.name} (height: ${pokemon.height})`;
 	if (pokemon.height >= 1.5) {
-		document.getElementById('pokemon-list').innerHTML += ` - Wow, that's big!`;
+		document.querySelector('#pokemon-list').innerHTML += ` - Wow, that's big!`;
 	}
-	document.getElementById('pokemon-list').innerHTML += '<br>';
+	document.querySelector('#pokemon-list').innerHTML += '<br>';
 });
