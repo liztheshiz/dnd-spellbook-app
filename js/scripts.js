@@ -1,11 +1,14 @@
 // Initialize list of Pokemon + methods in IIFE
 let pokemonRepository = (function() {
+	// Initialize pokemonList
 	let pokemonList = [
 		{name: 'Charizard', height: 1.7, types: ['fire', 'flying']},
 		{name: 'Mankey', height: 0.5, types: ['fighting']},
 		{name: 'Piloswine', height: 1.1, types: ['ice', 'ground']}
 	];
+	// Accepted list of keys in Pokemon objects in pokemonList
 	let pokemonKeys = ['name', 'height', 'types'];
+	// Selects .pokemon-list in DOM
 	let buttonList = document.querySelector('.pokemon-list');
 
 	// Returns pokemonList
@@ -23,6 +26,7 @@ let pokemonRepository = (function() {
 
 	// Returns Pokemon object with given name
 	function findPokemon(name) {
+		// Create array of Pokemon with given name
 		let givenPokemon = pokemonList.filter(element => element.name === name);
 		// Returns either single Pokemon object, or array of objects if >1 Pokemon with same name
 		if (givenPokemon.length === 1) {
@@ -64,4 +68,4 @@ let pokemonRepository = (function() {
 // Print list of Pokemon in pokemonList on screen as buttons
 pokemonRepository.getAll().forEach(function(pokemon) {
 	pokemonRepository.addListItem(pokemon);
-});
+});pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
