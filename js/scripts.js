@@ -14,7 +14,7 @@ let pokemonRepository = (function() {
 	}
 
 	// Adds new item to pokemonList
-	function add(item){
+	function add(item) {
 		// Only adds object types with keys found in pokemonKeys
 		if ((typeof item === 'object') && (Object.keys(item).every((element, i) => element === pokemonKeys[i]))) {
 			pokemonList.push(item);
@@ -32,16 +32,30 @@ let pokemonRepository = (function() {
 		}
 	}
 
-	// Add new Pokemon button to pokemon-list
+	// Logs name of given Pokemon in console
+	function showDetails(pokemon) {
+		console.log(pokemon.name);
+	}
+
+	// Adds event listener to given object that logs name of given Pokemon using showDetails
+	function addListener(button, pokemon) {
+		button.addEventListener('click', function (event) {
+			showDetails(pokemon);
+		});
+	}
+
+	// Adds new Pokemon button to pokemon-list
 	function addListItem(pokemon) {
 		let listItem = document.createElement('li');
 
 		let buttonItem = document.createElement('button');
-		buttonItem.innerText = `${pokemon.name}`;
+		buttonItem.innerText = pokemon.name;
 		buttonItem.classList.add('list-button');
 
 		listItem.appendChild(buttonItem);
 		buttonList.appendChild(listItem);
+
+		addListener(buttonItem, pokemon);
 	}
 
 	return {getAll, add, findPokemon, addListItem}
