@@ -43,9 +43,7 @@ let pokemonRepository = (function() {
 
 	// Adds event listener to given object that logs name of given Pokemon using showDetails
 	function addListener(button, pokemon) {
-		button.addEventListener('click', function (event) {
-			showDetails(pokemon);
-		});
+		button.addEventListener('click', () => showDetails(pokemon));
 	}
 
 	// Adds new Pokemon button to pokemon-list
@@ -66,6 +64,4 @@ let pokemonRepository = (function() {
 })();
 
 // Print list of Pokemon in pokemonList on screen as buttons
-pokemonRepository.getAll().forEach(function(pokemon) {
-	pokemonRepository.addListItem(pokemon);
-});pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
+pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
