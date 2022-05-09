@@ -15,7 +15,6 @@ let pokemonRepository = (function() {
 	// Adds new item to pokemonList
 	function add(item){
 		// Only adds object types with keys found in pokemonKeys
-		let pokemonKeys = ['name', 'height', 'types'];
 		if ((typeof item === 'object') && (Object.keys(item).every((element, i) => element === pokemonKeys[i]))) {
 			pokemonList.push(item);
 		}
