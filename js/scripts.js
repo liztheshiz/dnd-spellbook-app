@@ -6,6 +6,7 @@ let pokemonRepository = (function() {
 		{name: 'Piloswine', height: 1.1, types: ['ice', 'ground']}
 	];
 	let pokemonKeys = ['name', 'height', 'types'];
+	let buttonList = document.querySelector('.pokemon-list');
 
 	// Returns pokemonList
 	function getAll() {
@@ -31,26 +32,22 @@ let pokemonRepository = (function() {
 		}
 	}
 
-	return {add, getAll, findPokemon}
+	// Add new Pokemon button to pokemon-list
+	function addListItem(pokemon) {
+		let listItem = document.createElement('li');
+
+		let buttonItem = document.createElement('button');
+		buttonItem.innerText = `${pokemon.name}`;
+		buttonItem.classList.add('list-button');
+
+		listItem.appendChild(buttonItem);
+		buttonList.appendChild(listItem);
+	}
+
+	return {getAll, add, findPokemon, addListItem}
 })();
 
-// Print list of Pokemon in pokemonList on screen in pokemon-list
+// Print list of Pokemon in pokemonList on screen as buttons
 pokemonRepository.getAll().forEach(function(pokemon) {
-	let buttonList = document.querySelector('.pokemon-list');
-
-	let listItem = document.createElement('li');
-
-	let buttonItem = document.createElement('button');
-	buttonItem.innerText = `${pokemon.name}`;
-	buttonItem.classList.add('list-button');
-
-	listItem.appendChild(buttonItem);
-	buttonList.appendChild(listItem);
-
-
-	/*document.querySelector('#pokemon-list').innerHTML += `${pokemon.name} (height: ${pokemon.height})`;
-	if (pokemon.height >= 1.5) {
-		document.querySelector('#pokemon-list').innerHTML += ` - Wow, that's big!`;
-	}
-	document.querySelector('#pokemon-list').innerHTML += '<br>';*/
+	pokemonRepository.addListItem(pokemon);
 });
