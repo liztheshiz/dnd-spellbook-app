@@ -5,6 +5,7 @@ let pokemonRepository = (function() {
 		{name: 'Mankey', height: 0.5, types: ['fighting']},
 		{name: 'Piloswine', height: 1.1, types: ['ice', 'ground']}
 	];
+	let pokemonKeys = ['name', 'height', 'types'];
 
 	// Returns pokemonList
 	function getAll() {
