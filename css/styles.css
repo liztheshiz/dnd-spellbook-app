@@ -8,6 +8,7 @@
 
   --bold: 700;
   --list-width: 350px;
+  --list-width-small: 275px;
 }
 
 
@@ -86,4 +87,27 @@ main {
 
 .list-button:active {
 	border-style: inset;
+}
+
+
+
+/*	>>><<<
+	RESPONSIVE ELEMENTS
+	>>><<< */
+@media all and (max-width: 400px) {
+	h1 {
+		font-size: 50px;
+	}
+
+	.title {
+		max-width: var(--list-width-small);
+	}
+
+	.pokemon-list {
+		max-width: var(--list-width-small);
+	}
+
+	.list-button {
+		font-size: 25px;
+	}
 }
