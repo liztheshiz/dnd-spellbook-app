@@ -7,6 +7,7 @@
   --dark-grey: #2b2b2b; /* dark grey */
 
   --bold: 700;
+  --list-width: 350px;
 }
 
 
@@ -55,14 +56,34 @@ main {
 .title {
 	background-color: var(--secondary-color);
 	margin: 15px auto;
-	max-width: 325px;
+	max-width: var(--list-width);
 	border-radius: 50px;
 	text-align: center;
 }
 
-#pokemon-list {
+.pokemon-list {
 	margin: 50px auto 0;
-	padding-left: 150px;
-	max-width: 700px;
-	text-align: left;
+	max-width: var(--list-width);
+	list-style: none;
+}
+
+.list-button {
+	background-color: var(--primary-color);
+	border: 5px outset #d6c560;
+	margin: 10px 0;
+	margin-left: -20px;
+	padding: 10px;
+	width: 100%;
+	font-family: 'Karla', sans-serif;
+	font-size: 30px;
+	color: var(--dark-grey);
+}
+
+.list-button:hover, .list-button:focus {
+	cursor: pointer;
+	opacity: 0.85;
+}
+
+.list-button:active {
+	border-style: inset;
 }
