@@ -3,7 +3,7 @@ let pokemonRepository = (function() {
 	// >>VARIABLES //
 	let pokemonList = []; // Initialize pokemonList
 	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-	let pokemonKeys = ['name', 'height', 'types']; // Accepted list of keys in Pokemon objects in pokemonList
+	let pokemonKeys = ['name', 'detailsUrl', 'imageUrl', 'height', 'types']; // Accepted list of keys in Pokemon objects in pokemonList
 	let buttonList = document.querySelector('.pokemon-list'); // Selects .pokemon-list in DOM
 	// VARIABLES<< //
 
@@ -46,14 +46,15 @@ let pokemonRepository = (function() {
 		addListener(buttonItem, pokemon);
 	}
 
+	// Load initial list of Pokemon from API with name and detailsURL attributes
 	function loadList() {
 	    return fetch(apiUrl).then(function (response) {
 	      	return response.json();
 	    }).then(function (json) {
 	      	json.results.forEach(function (item) {
 	        	let pokemon = {
-	          	name: item.name,
-	          	detailsUrl: item.url
+		          	name: item.name,
+		          	detailsUrl: item.url
 	        	};
 	        	add(pokemon);
 	      	});
@@ -62,6 +63,7 @@ let pokemonRepository = (function() {
 	    })
 	}
 
+	// Add additional details to given Pokemon object: image, height, and types
 	function loadDetails(item) {
 	    let url = item.detailsUrl;
 	    return fetch(url).then(function (response) {
@@ -90,8 +92,6 @@ let pokemonRepository = (function() {
 })();
 
 // Print list of Pokemon in pokemonList on screen as buttons
-//pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
-
 pokemonRepository.loadList().then(function() {
 	// Now the data is loaded!
 	pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
