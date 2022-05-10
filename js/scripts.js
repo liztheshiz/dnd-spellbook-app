@@ -1,11 +1,9 @@
 // Initialize list of Pokemon + methods in IIFE
 let pokemonRepository = (function() {
+	// >>VARIABLES<< //
 	// Initialize pokemonList
-	let pokemonList = [
-		{name: 'Charizard', height: 1.7, types: ['fire', 'flying']},
-		{name: 'Mankey', height: 0.5, types: ['fighting']},
-		{name: 'Piloswine', height: 1.1, types: ['ice', 'ground']}
-	];
+	let pokemonList = [];
+	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 	// Accepted list of keys in Pokemon objects in pokemonList
 	let pokemonKeys = ['name', 'height', 'types'];
 	// Selects .pokemon-list in DOM
