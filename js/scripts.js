@@ -76,4 +76,9 @@ let pokemonRepository = (function() {
 })();
 
 // Print list of Pokemon in pokemonList on screen as buttons
-pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
+//pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
+
+pokemonRepository.loadList().then(function() {
+	// Now the data is loaded!
+	pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
+});
