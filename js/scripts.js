@@ -56,7 +56,23 @@ let pokemonRepository = (function() {
 		addListener(buttonItem, pokemon);
 	}
 
-	return {getAll, add, findPokemon, addListItem}
+	function loadList() {
+	    return fetch(apiUrl).then(function (response) {
+	      	return response.json();
+	    }).then(function (json) {
+	      	json.results.forEach(function (item) {
+	        	let pokemon = {
+	          	name: item.name,
+	          	detailsUrl: item.url
+	        	};
+	        	add(pokemon);
+	      	});
+	    }).catch(function (e) {
+	      	console.error(e);
+	    })
+	}
+
+	return {getAll, add, findPokemon, addListItem, loadList}
 })();
 
 // Print list of Pokemon in pokemonList on screen as buttons
