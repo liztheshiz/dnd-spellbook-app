@@ -1,13 +1,11 @@
 // Initialize list of Pokemon + methods in IIFE
 let pokemonRepository = (function() {
-	// >>VARIABLES<< //
-	// Initialize pokemonList
-	let pokemonList = [];
+	// >>VARIABLES //
+	let pokemonList = []; // Initialize pokemonList
 	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-	// Accepted list of keys in Pokemon objects in pokemonList
-	let pokemonKeys = ['name', 'height', 'types'];
-	// Selects .pokemon-list in DOM
-	let buttonList = document.querySelector('.pokemon-list');
+	let pokemonKeys = ['name', 'height', 'types']; // Accepted list of keys in Pokemon objects in pokemonList
+	let buttonList = document.querySelector('.pokemon-list'); // Selects .pokemon-list in DOM
+	// VARIABLES<< //
 
 	// Returns pokemonList
 	function getAll() {
