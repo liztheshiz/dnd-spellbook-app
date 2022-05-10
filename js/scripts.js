@@ -32,16 +32,6 @@ let pokemonRepository = (function() {
 		}
 	}
 
-	// Logs name of given Pokemon in console
-	function showDetails(pokemon) {
-		console.log(pokemon.name);
-	}
-
-	// Adds event listener to given object that logs name of given Pokemon using showDetails
-	function addListener(button, pokemon) {
-		button.addEventListener('click', () => showDetails(pokemon));
-	}
-
 	// Adds new Pokemon button to pokemon-list
 	function addListItem(pokemon) {
 		let listItem = document.createElement('li');
@@ -84,6 +74,16 @@ let pokemonRepository = (function() {
 	    }).catch(function (e) {
 	      	console.error(e);
 	    });
+	}
+
+	// Logs name of given Pokemon in console
+	function showDetails(pokemon) {
+		loadDetails(pokemon).then(() => console.log(pokemon));
+	}
+
+	// Adds event listener to given object that logs name of given Pokemon using showDetails
+	function addListener(button, pokemon) {
+		button.addEventListener('click', () => showDetails(pokemon));
 	}
 
 	return {getAll, add, findPokemon, addListItem, loadList, loadDetails}
