@@ -55,7 +55,7 @@ let pokemonRepository = (function() {
 		}
 	}
 
-	// Load initial list of Pokemon from API with name and detailsURL attributes
+	// Loads initial list of Pokemon from API with name and detailsURL attributes
 	function loadList() {
 	    loadingMessageHidden(false);
 	    return fetch(apiUrl).then(function (response) {
@@ -76,7 +76,7 @@ let pokemonRepository = (function() {
 	    })
 	}
 
-	// Add additional details to given Pokemon object: image, height, and types
+	// Adds additional details to given Pokemon object: image, height, and types
 	function loadDetails(item) {
 	    loadingMessageHidden(false);
 	    let url = item.detailsUrl;
@@ -108,8 +108,40 @@ let pokemonRepository = (function() {
 	return {getAll, add, findPokemon, addListItem, loadList, loadDetails}
 })();
 
-// Print list of Pokemon in pokemonList on screen as buttons
+// Prints list of Pokemon in pokemonList on screen as buttons
 pokemonRepository.loadList().then(function() {
 	// Now the data is loaded!
 	pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
+});
+
+function showModal(title, text) {
+  let modalContainer = document.querySelector('#modal-container');
+
+  // Clears all existing modal content
+  modalContainer.innerHTML = '';
+
+  let modal = document.createElement('div');
+  modal.classList.add('modal');
+
+  // Adds the new modal content
+  let closeButtonElement = document.createElement('button');
+  closeButtonElement.classList.add('modal-close');
+  closeButtonElement.innerText = 'Close';
+
+  let titleElement = document.createElement('h1');
+  titleElement.innerText = title;
+
+  let contentElement = document.createElement('p');
+  contentElement.innerText = text;
+
+  modal.appendChild(closeButtonElement);
+  modal.appendChild(titleElement);
+  modal.appendChild(contentElement);
+  modalContainer.appendChild(modal);
+
+  modalContainer.classList.add('is-visible');
+}
+
+document.querySelector('#show-modal').addEventListener('click', () => {
+  showModal('Modal title', 'This is the modal content');
 });
