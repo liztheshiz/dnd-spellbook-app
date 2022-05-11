@@ -135,26 +135,28 @@ main {
 	width: 100%;
 	max-width: 600px;
 	text-align: center;
+	position: relative;
 }
 
 .modal-close {
-  float: right;
+  position: absolute;
+  bottom: 10px;
   -webkit-appearance: none;
   border: 0;
   background: none;
   color: #777;
   text-decoration: underline;
+  transform: translateX(-45%);
 }
 
 .modal h2 {
   margin-top: 0;
   margin-bottom: 20px;
-  padding-left: 45px;
 }
 
 .modal p {
 	margin-top: 0;
-  margin-bottom: 10px;
+	margin-bottom: 10px;
   line-height: 1.6;
   color: var(--dark-grey);
 }
@@ -162,6 +164,7 @@ main {
 .modal img {
 	width: 200px;
 	height: auto;
+	margin-bottom: 10px;
 }
 
 
@@ -176,6 +179,10 @@ main {
 
 	h1 {
 		font-size: 50px;
+	}
+
+	h2 {
+		font-size: 40px;
 	}
 
 	.title {
@@ -198,6 +205,21 @@ main {
 	@media all and (max-height: 550px) {
 		.pokemon-list {
 			margin-top: 0;
+		}
+
+		.modal h2 {
+			margin-bottom: 10px;
+		}
+
+		.modal p {
+			line-height: 1.4;
+			margin-bottom: 5px;
+		}
+
+		.modal img {
+			width: 150px;
+			height: auto;
+			margin-bottom: 5px;
 		}
 	}
 
