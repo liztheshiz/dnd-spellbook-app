@@ -100,7 +100,7 @@ main {
 }
 
 #modal-container {
-	diplay: none;
+	display: none;
 }
 
 #modal-container.is-visible {
@@ -132,7 +132,7 @@ main {
 	padding: 15px;
 	width: 100%;
 	max-width: 700px;
-	text-align: left;
+	text-align: center;
 }
 
 .modal-close {
