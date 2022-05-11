@@ -64,7 +64,7 @@ main {
 
 .loading-message {
 	position: fixed;
-	top: 100px;
+	bottom: 20px;
 	right: 40px;
 }
 
@@ -105,12 +105,21 @@ main {
 	RESPONSIVE ELEMENTS
 	>>><<< */
 @media all and (max-width: 400px), all and (max-height: 550px) {
+	body {
+		font-size: 25px;
+	}
+
 	h1 {
 		font-size: 50px;
 	}
 
 	.title {
 		max-width: var(--list-width-small);
+	}
+
+	.loading-message {
+		bottom: 12px;
+		right: 20px;
 	}
 
 	.pokemon-list {
