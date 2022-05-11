@@ -5,6 +5,7 @@ let pokemonRepository = (function() {
 	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 	let pokemonKeys = ['name', 'detailsUrl', 'imageUrl', 'height', 'types']; // Accepted list of keys in Pokemon objects in pokemonList
 	let buttonList = document.querySelector('.pokemon-list'); // Selects .pokemon-list in DOM
+	let loadingMessage = document.querySelector('.loading-message'); // Selects .loading-message in DOM
 	// VARIABLES<< //
 
 	// Returns pokemonList
@@ -46,11 +47,22 @@ let pokemonRepository = (function() {
 		addListener(buttonItem, pokemon);
 	}
 
+	function loadingMessageHidden(hide) {
+		if (hide) {
+			loadingMessage.classList.add('hidden');
+		} else {
+			loadingMessage.classList.remove('hidden');
+		}
+	}
+
 	// Load initial list of Pokemon from API with name and detailsURL attributes
 	function loadList() {
+	    loadingMessageHidden(false);
 	    return fetch(apiUrl).then(function (response) {
+	      	loadingMessageHidden(true);
 	      	return response.json();
 	    }).then(function (json) {
+	      	loadingMessageHidden(true);
 	      	json.results.forEach(function (item) {
 	        	let pokemon = {
 		          	name: item.name,
@@ -59,21 +71,26 @@ let pokemonRepository = (function() {
 	        	add(pokemon);
 	      	});
 	    }).catch(function (e) {
+	      	loadingMessageHidden(true);
 	      	console.error(e);
 	    })
 	}
 
 	// Add additional details to given Pokemon object: image, height, and types
 	function loadDetails(item) {
+	    loadingMessageHidden(false);
 	    let url = item.detailsUrl;
 	    return fetch(url).then(function (response) {
+	      	loadingMessageHidden(true);
 	      	return response.json();
 	    }).then(function (details) {
+	      	loadingMessageHidden(true);
 	      	// Now we add the details to the item
 	      	item.imageUrl = details.sprites.front_default;
 	      	item.height = details.height;
 	      	item.types = details.types;
 	    }).catch(function (e) {
+	      	loadingMessageHidden(true);
 	      	console.error(e);
 	    });
 	}
