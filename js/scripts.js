@@ -98,7 +98,7 @@ let pokemonRepository = (function() {
 
 	// Logs name of given Pokemon in console
 	function showDetails(pokemon) {
-		loadDetails(pokemon).then(() => console.log(pokemon));
+		loadDetails(pokemon).then(showModal('Modal title', 'This is the modal content'));
 	}
 
 	// Adds event listener to given object that logs name of given Pokemon using showDetails
