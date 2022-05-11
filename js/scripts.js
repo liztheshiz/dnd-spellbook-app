@@ -98,7 +98,13 @@ let pokemonRepository = (function() {
 
 	// Logs name of given Pokemon in console
 	function showDetails(pokemon) {
-		loadDetails(pokemon).then(showModal(pokemon.name, `Height: ${pokemon.height}`, pokemon.imageUrl));
+		/*function typesString(pokemon) {
+			let typesString = '';
+			pokemon.types.forEach(function (type) {
+				typesString += `${type}, `
+			});
+		}*/
+		loadDetails(pokemon).then(showModal(pokemon.name, `Height: ${pokemon.height}<br>Types: [types here]`, pokemon.imageUrl));
 	}
 
 	// Adds event listener to given object that logs name of given Pokemon using showDetails
@@ -123,7 +129,7 @@ let pokemonRepository = (function() {
 		titleElement.innerText = title;
 
 		let contentElement = document.createElement('p');
-		contentElement.innerText = text;
+		contentElement.innerHTML = text;
 
 		let imgElement = document.createElement('img');
 		imgElement.src = imgURL;
