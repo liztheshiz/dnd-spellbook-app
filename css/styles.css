@@ -41,6 +41,7 @@ h1 {
 h2 {
  	font-size: 45px;
  	font-weight: var(--bold);
+ 	color: var(--secondary-color);
 }
 
 h3 {
@@ -128,10 +129,11 @@ main {
 	margin: auto;
 	display: inline-block;
 	box-sizing: border-box;
-	background: #fff;
+	background: var(--primary-color);
+	border: 5px double #d6c560;
 	padding: 15px;
 	width: 100%;
-	max-width: 700px;
+	max-width: 600px;
 	text-align: center;
 }
 
@@ -144,7 +146,7 @@ main {
   text-decoration: underline;
 }
 
-.modal h1 {
+.modal h2 {
   margin-top: 0;
 }
 
