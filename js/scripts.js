@@ -115,33 +115,46 @@ pokemonRepository.loadList().then(function() {
 });
 
 function showModal(title, text) {
-  let modalContainer = document.querySelector('#modal-container');
+	let modalContainer = document.querySelector('#modal-container');
 
-  // Clears all existing modal content
-  modalContainer.innerHTML = '';
+	// Clears all existing modal content
+	modalContainer.innerHTML = '';
 
-  let modal = document.createElement('div');
-  modal.classList.add('modal');
+	let modal = document.createElement('div');
+	modal.classList.add('modal');
 
-  // Adds the new modal content
-  let closeButtonElement = document.createElement('button');
-  closeButtonElement.classList.add('modal-close');
-  closeButtonElement.innerText = 'Close';
+	// Adds the new modal content
+	let closeButtonElement = document.createElement('button');
+	closeButtonElement.classList.add('modal-close');
+	closeButtonElement.innerText = 'Close';
+	closeButtonElement.addEventListener('click', hideModal);
 
-  let titleElement = document.createElement('h1');
-  titleElement.innerText = title;
+	let titleElement = document.createElement('h1');
+	titleElement.innerText = title;
 
-  let contentElement = document.createElement('p');
-  contentElement.innerText = text;
+	let contentElement = document.createElement('p');
+	contentElement.innerText = text;
 
-  modal.appendChild(closeButtonElement);
-  modal.appendChild(titleElement);
-  modal.appendChild(contentElement);
-  modalContainer.appendChild(modal);
+	modal.appendChild(closeButtonElement);
+	modal.appendChild(titleElement);
+	modal.appendChild(contentElement);
+	modalContainer.appendChild(modal);
 
-  modalContainer.classList.add('is-visible');
+	modalContainer.classList.add('is-visible');
+}
+
+function hideModal() {
+  	let modalContainer = document.querySelector('#modal-container');
+  	modalContainer.classList.remove('is-visible');
 }
 
 document.querySelector('#show-modal').addEventListener('click', () => {
-  showModal('Modal title', 'This is the modal content');
+  	showModal('Modal title', 'This is the modal content');
+});
+
+window.addEventListener('keydown', (e) => {
+	let modalContainer = document.querySelector('#modal-container');
+	if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+		hideModal();
+	}
 });
