@@ -98,7 +98,7 @@ let pokemonRepository = (function() {
 
 	// Logs name of given Pokemon in console
 	function showDetails(pokemon) {
-		loadDetails(pokemon).then(showModal('Modal title', 'This is the modal content'));
+		loadDetails(pokemon).then(showModal(pokemon.name, `Height: ${pokemon.height}`, pokemon.imageUrl));
 	}
 
 	// Adds event listener to given object that logs name of given Pokemon using showDetails
@@ -106,7 +106,7 @@ let pokemonRepository = (function() {
 		button.addEventListener('click', () => showDetails(pokemon));
 	}
 
-	function showModal(title, text) {
+	function showModal(title, text, imgURL) {
 		// Clears all existing modal content
 		modalContainer.innerHTML = '';
 
@@ -125,9 +125,13 @@ let pokemonRepository = (function() {
 		let contentElement = document.createElement('p');
 		contentElement.innerText = text;
 
+		let imgElement = document.createElement('img');
+		imgElement.src = imgURL;
+
 		modal.appendChild(closeButtonElement);
 		modal.appendChild(titleElement);
 		modal.appendChild(contentElement);
+		modal.appendChild(imgElement);
 		modalContainer.appendChild(modal);
 
 		modalContainer.classList.add('is-visible');
@@ -136,10 +140,6 @@ let pokemonRepository = (function() {
 	function hideModal() {
 	  	modalContainer.classList.remove('is-visible');
 	}
-
-	document.querySelector('#show-modal').addEventListener('click', () => {
-	  	showModal('Modal title', 'This is the modal content');
-	});
 
 	window.addEventListener('keydown', (e) => {
 		if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
