@@ -98,18 +98,12 @@ let pokemonRepository = (function() {
 
 	// Logs name of given Pokemon in console
 	function showDetails(pokemon) {
-		/*function typesString(pokemon) {
-			let typesString = '';
-			pokemon.types.forEach(function (type) {
-				typesString += `${type}, `
-			});
-		}*/
-		loadDetails(pokemon).then(showModal(pokemon.name, `Height: ${pokemon.height}<br>Types: [types here]`, pokemon.imageUrl));
+		loadDetails(pokemon).then(function () {
+			showModal(pokemon);
+		});
 	}
 
-	}
-
-	function showModal(title, text, imgURL) {
+	function showModal(pokemon) {
 		// Clears all existing modal content
 		modalContainer.innerHTML = '';
 
@@ -123,13 +117,22 @@ let pokemonRepository = (function() {
 		closeButtonElement.addEventListener('click', hideModal);
 
 		let titleElement = document.createElement('h2');
-		titleElement.innerText = title;
+		titleElement.innerText = pokemon.name;
+
+		let typesString = '';
+		pokemon.types.forEach(function (type, i) {
+			if (i < pokemon.types.length - 1) {
+				typesString += `${type.type.name}, `
+			} else {
+				typesString += `${type.type.name}`
+			}
+		});
 
 		let contentElement = document.createElement('p');
-		contentElement.innerHTML = text;
+		contentElement.innerHTML = `Height: ${pokemon.height}<br>Types: ${typesString}`;
 
 		let imgElement = document.createElement('img');
-		imgElement.src = imgURL;
+		imgElement.src = pokemon.imageUrl;
 
 		modal.appendChild(closeButtonElement);
 		modal.appendChild(titleElement);
