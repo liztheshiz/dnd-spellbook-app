@@ -45,7 +45,7 @@ let pokemonRepository = (function() {
 		listItem.appendChild(buttonItem);
 		buttonList.appendChild(listItem);
 
-		addListener(buttonItem, pokemon);
+		buttonItem.addEventListener('click', () => showDetails(pokemon));
 	}
 
 	function loadingMessageHidden(hide) {
@@ -107,9 +107,6 @@ let pokemonRepository = (function() {
 		loadDetails(pokemon).then(showModal(pokemon.name, `Height: ${pokemon.height}<br>Types: [types here]`, pokemon.imageUrl));
 	}
 
-	// Adds event listener to given object that logs name of given Pokemon using showDetails
-	function addListener(button, pokemon) {
-		button.addEventListener('click', () => showDetails(pokemon));
 	}
 
 	function showModal(title, text, imgURL) {
