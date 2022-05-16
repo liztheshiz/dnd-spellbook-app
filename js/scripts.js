@@ -85,11 +85,11 @@ let pokemonRepository = (function() {
 	      	loadingMessageHidden(true);
 	      	return response.json();
 	    }).then(function (details) {
-	      	loadingMessageHidden(true);
 	      	// Now we add the details to the item
 	      	item.imageUrl = details.sprites.front_default;
 	      	item.height = details.height;
 	      	item.types = details.types;
+	      	loadingMessageHidden(true);
 	    }).catch(function (e) {
 	      	loadingMessageHidden(true);
 	      	console.error(e);
