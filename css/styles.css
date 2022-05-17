@@ -111,6 +111,10 @@ main {
 		font-size: 40px;
 	}
 
+	main {
+		margin-top: 30px;
+	}
+
 	#pokelogo {
 			max-width: 150px;
 	}
@@ -128,34 +132,13 @@ main {
 		max-width: var(--list-width-small);
 	}
 
+	.list-button {
+		font-size: 25px;
+	}
+
 	@media all and (max-height: 550px) {
 		.pokemon-list {
 			margin-top: 0;
 		}
-
-		/*.modal h2 {
-			margin-bottom: 10px;
-		}
-
-		.modal p {
-			line-height: 1.4;
-			margin-bottom: 5px;
-		}
-
-		.modal img {
-			width: 150px;
-			height: auto;
-			margin-bottom: 5px;
-		}*/
-	}
-
-	@media all and (min-height: 400px) and (max-height: 550px) {
-		main {
-			margin-top: 50px;
-		}
-	}
-
-	@media all and (max-height: 400px) {
-		
 	}
 }
