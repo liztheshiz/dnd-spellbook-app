@@ -4,7 +4,7 @@ let pokemonRepository = (function() {
 	let pokemonList = []; // Initialize pokemonList
 	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 	let pokemonKeys = ['name', 'detailsUrl', 'imageUrl', 'height', 'types']; // Accepted list of keys in Pokemon objects in pokemonList
-	let buttonList = document.querySelector('.pokemon-list'); // Selects .pokemon-list in DOM
+	let buttonList = document.querySelector('.list-group'); // Selects .pokemon-list in DOM
 	let loadingMessage = document.querySelector('.loading-message'); // Selects .loading-message in DOM
 	let modalContainer = document.querySelector('#modal-container'); // Selects #modal-container in the DOM
 	// VARIABLES<< //
@@ -36,23 +36,20 @@ let pokemonRepository = (function() {
 
 	// Adds new Pokemon button to pokemon-list
 	function addListItem(pokemon) {
-		let listItem = document.createElement('li');
-
 		let buttonItem = document.createElement('button');
 		buttonItem.innerText = pokemon.name;
-		buttonItem.classList.add('list-button');
+		buttonItem.classList.add('list-group-item', 'list-group-item-active', 'list-button');
 
-		listItem.appendChild(buttonItem);
-		buttonList.appendChild(listItem);
+		buttonList.appendChild(buttonItem);
 
 		buttonItem.addEventListener('click', () => showDetails(pokemon));
 	}
 
 	function loadingMessageHidden(hide) {
 		if (hide) {
-			loadingMessage.classList.add('hidden');
+			loadingMessage.classList.replace('d-block', 'd-none');
 		} else {
-			loadingMessage.classList.remove('hidden');
+			loadingMessage.classList.replace('d-none', 'd-block');
 		}
 	}
 
