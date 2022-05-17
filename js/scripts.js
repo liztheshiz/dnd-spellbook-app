@@ -6,10 +6,10 @@ let pokemonRepository = (function() {
 	let pokemonKeys = ['name', 'detailsUrl', 'imageUrl', 'height', 'types']; // Accepted list of keys in Pokemon objects in pokemonList
 	let buttonList = document.querySelector('.list-group'); // Selects .pokemon-list in DOM
 	let loadingMessage = document.querySelector('.loading-message'); // Selects .loading-message in DOM
-	let modalContainer = document.querySelector('#exampleModal'); // Selects #modal-container in the DOM
-	let titleElement = document.querySelector('.modal-title');
-	let contentElement = document.querySelector('.modal-body');
-	let imgElement = document.querySelector('.modal-image');
+	let modalContainer = document.querySelector('#modal-container'); // Selects #modal-container in the DOM
+	let titleElement = document.querySelector('.modal-title'); // Selects .modal-title in the DOM
+	let contentElement = document.querySelector('.modal-body'); // Selects .modal-body in the DOM
+	let imgElement = document.querySelector('.modal-image'); // Selects .modal-image in the DOM
 	// VARIABLES<< //
 
 	// Returns pokemonList
@@ -42,9 +42,8 @@ let pokemonRepository = (function() {
 		let buttonItem = document.createElement('button');
 		buttonItem.innerText = pokemon.name;
 		buttonItem.classList.add('list-group-item', 'list-group-item-active', 'list-button');
-		buttonItem.setAttribute('data-target', '#exampleModal');
+		buttonItem.setAttribute('data-target', '#modal-container');
 		buttonItem.setAttribute('data-toggle', 'modal');
-		buttonItem.setAttribute('type', 'button');
 
 		buttonList.appendChild(buttonItem);
 
@@ -126,7 +125,6 @@ let pokemonRepository = (function() {
 		contentElement.innerHTML = `Height: ${pokemon.height}<br>Types: ${typesString}<br>`;
 
 		imgElement.src = pokemon.imageUrl;
-
 		contentElement.appendChild(imgElement);
 	}
 
