@@ -85,6 +85,10 @@ main {
 	color: var(--dark-grey);
 }
 
+.list-item_image {
+	width: 200px;
+}
+
 .list-button {
 	background-color: var(--secondary-color);
 	margin-top: 10px;

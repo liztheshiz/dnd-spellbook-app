@@ -43,6 +43,13 @@ let pokemonRepository = (function() {
 		listItem.innerHTML = `${pokemon.name}<br>`;
 		listItem.classList.add('list-group-item', 'list-group-item-active', 'list-item', 'text-center');
 
+		let listImage = document.createElement('img');
+		listImage.classList.add('list-item_image');
+		loadDetails(pokemon).then(function () {
+			listImage.src = pokemon.imageUrl;
+		});
+		listItem.appendChild(listImage);
+
 		let buttonItem = document.createElement('button');
 		buttonItem.classList.add('list-button');
 		buttonItem.setAttribute('data-target', '#modal-container');
