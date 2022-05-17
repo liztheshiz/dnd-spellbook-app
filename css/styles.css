@@ -27,7 +27,7 @@ body {
 	background-color: var(--background-color);
 	font-family: 'Karla', sans-serif;
 	font-weight: 400;
-	font-size: 30px;
+	font-size: 20px;
 	color: var(--dark-grey);
 	line-height: 1.4;
 }
@@ -55,6 +55,14 @@ main {
 
 
 
+.navbar {
+	background-color: var(--secondary-color);
+}
+
+#pokelogo {
+	max-width: 200px;
+}
+
 .title {
 	background-color: var(--secondary-color);
 	margin: 15px auto;
@@ -67,10 +75,7 @@ main {
 	position: fixed;
 	bottom: 20px;
 	right: 40px;
-}
-
-.hidden {
-	display: none;
+	z-index: 999;
 }
 
 .pokemon-list {
@@ -82,18 +87,9 @@ main {
 .list-button {
 	background-color: var(--primary-color);
 	border: 5px outset #d6c560;
-	margin: 10px 0;
-	margin-left: -20px;
-	padding: 10px;
-	width: 100%;
-	font-family: 'Karla', sans-serif;
+	margin-top: 10px;
 	font-size: 30px;
 	color: var(--dark-grey);
-}
-
-.list-button:hover, .list-button:focus {
-	cursor: pointer;
-	opacity: 0.85;
 }
 
 .list-button:active {
@@ -175,7 +171,7 @@ main {
 	>>><<< */
 @media all and (max-width: 400px), all and (max-height: 550px) {
 	body {
-		font-size: 25px;
+		font-size: 18px;
 	}
 
 	h1 {
@@ -197,10 +193,6 @@ main {
 
 	.pokemon-list {
 		max-width: var(--list-width-small);
-	}
-
-	.list-button {
-		font-size: 25px;
 	}
 
 	@media all and (max-height: 550px) {
