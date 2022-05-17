@@ -74,19 +74,35 @@ main {
 .pokemon-list {
 	margin: 20px auto 0;
 	max-width: var(--list-width);
-	list-style: none;
+}
+
+.list-item {
+	background-color: var(--primary-color);
+	border: 3px solid #d6c560;
+	margin-top: 10px;
+	font-size: 30px;
+	border-radius: 10px;
+	color: var(--dark-grey);
+}
+
+.list-item_image {
+	width: 200px;
 }
 
 .list-button {
-	background-color: var(--primary-color);
-	border: 5px outset #d6c560;
+	background-color: var(--secondary-color);
 	margin-top: 10px;
+	border: 5px outset #27509c;
 	font-size: 30px;
-	color: var(--dark-grey);
+	border-radius: 47%;
 }
 
 .list-button:active {
 	border-style: inset;
+}
+
+.list-button_icon {
+	width: 40px;
 }
 
 .about-text {
