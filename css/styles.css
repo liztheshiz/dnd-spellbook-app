@@ -56,11 +56,11 @@ main {
 
 
 .title {
-	background-color: var(--secondary-color);
-	margin: 15px auto;
-	max-width: var(--list-width);
-	border-radius: 50px;
 	text-align: center;
+}
+
+#pokemon-logo {
+	width: var(--list-width);
 }
 
 .loading-message {
@@ -206,7 +206,7 @@ main {
 		font-size: 40px;
 	}
 
-	.title {
+	#pokemon-logo {
 		max-width: var(--list-width-small);
 	}
 
