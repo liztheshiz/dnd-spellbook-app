@@ -37,10 +37,23 @@ let pokemonRepository = (function() {
 	// Adds new Pokemon button to pokemon-list
 	function addListItem(pokemon) {
 		let listItem = document.createElement('li');
+		listItem.innerHTML = `${pokemon.name}<br>`;
+		listItem.classList.add('list-item');
+
+		let listImage = document.createElement('img');
+		listImage.classList.add('list-item_image');
+		loadDetails(pokemon).then(function () {
+			listImage.src = pokemon.imageUrl;
+		});
+		listItem.appendChild(listImage);
 
 		let buttonItem = document.createElement('button');
-		buttonItem.innerText = pokemon.name;
 		buttonItem.classList.add('list-button');
+
+		let icon = document.createElement('img');
+		icon.classList.add('list-button_icon');
+		icon.src = 'img/button-icon.png';
+		buttonItem.appendChild(icon);
 
 		listItem.appendChild(buttonItem);
 		buttonList.appendChild(listItem);

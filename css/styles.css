@@ -79,16 +79,31 @@ main {
 	list-style: none;
 }
 
-.list-button {
+.list-item {
 	background-color: var(--primary-color);
-	border: 5px outset #d6c560;
+	border: 3px solid #d6c560;
 	margin: 10px 0;
 	margin-left: -20px;
 	padding: 10px;
 	width: 100%;
+	border-radius: 10px;
 	font-family: 'Karla', sans-serif;
 	font-size: 30px;
+	text-align: center;
 	color: var(--dark-grey);
+}
+
+.list-item_image {
+	width: 200px;
+}
+
+.list-button {
+	background-color: var(--secondary-color);
+	margin-top: 10px;
+	border: 5px outset #27509c;
+	font-size: 30px;
+	border-radius: 47%;
+	margin-right: 20px;
 }
 
 .list-button:hover, .list-button:focus {
@@ -98,6 +113,10 @@ main {
 
 .list-button:active {
 	border-style: inset;
+}
+
+.list-button_icon {
+	width: 40px;
 }
 
 #modal-container {
@@ -137,6 +156,7 @@ main {
 	max-height: 500px;
 	text-align: center;
 	position: relative;
+	border-radius: 10px;
 }
 
 .modal-close {
