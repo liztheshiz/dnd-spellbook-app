@@ -140,12 +140,11 @@ main {
   
   /* this is used to center the modal */
   display: grid;
-  text-align: center;
 }
 
 .modal {
 	margin: auto;
-	display: inline-block;
+	display: grid;
 	box-sizing: border-box;
 	background: var(--primary-color);
 	border: 5px double #d6c560;
