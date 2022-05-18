@@ -7,6 +7,7 @@ let spellsRepository = (function() {
 	let spellsGrid = document.querySelector('.spells-grid'); // Selects .spells-grid in DOM
 	let loadingMessage = document.querySelector('.loading-message'); // Selects .loading-message in DOM
 	let modalContainer = document.querySelector('#modal-container'); // Selects #modal-container in the DOM
+	let modal = document.querySelector('#modal');
 	// VARIABLES<< //
 
 	// Returns spellsList
@@ -37,8 +38,12 @@ let spellsRepository = (function() {
 	// Adds new spell to spells-grid
 	function addListItem(spell) {
 		let listItem = document.createElement('div');
-		listItem.innerHTML = `${spell.name}<br>`;
 		listItem.classList.add('list-item');
+
+		let gridItemTitle = document.createElement('h3');
+		gridItemTitle.innerHTML = spell.name;
+		gridItemTitle.classList.add('spells-grid_item_title');
+		listItem.appendChild(gridItemTitle);
 
 		let listImage = document.createElement('img');
 		listImage.classList.add('list-item_image');
@@ -47,14 +52,9 @@ let spellsRepository = (function() {
 		});
 		listItem.appendChild(listImage);
 
-		let buttonItem = document.createElement('button');
-		buttonItem.classList.add('list-button');
-		buttonItem.innerText = 'See Details';
-
-		listItem.appendChild(buttonItem);
 		spellsGrid.appendChild(listItem);
 
-		buttonItem.addEventListener('click', () => showDetails(spell));
+		listItem.addEventListener('click', () => showDetails(spell));
 	}
 
 	function loadingMessageHidden(hide) {
@@ -96,9 +96,12 @@ let spellsRepository = (function() {
 	    }).then(function (details) {
 	      	// Now we add the details to the item
 	      	item.description = details.desc;
-	      	//item.higherLevel = details.hight_level;
+	      	item.higherLevel = details.higher_level;
 	      	item.range = details.range;
 	      	item.duration = details.duration;
+	      	item.castingTime = details.casting_time;
+	      	item.school = details.school;
+	      	item.classes = details.classes;
 	      	loadingMessageHidden(true);
 	    }).catch(function (e) {
 	      	loadingMessageHidden(true);
@@ -115,18 +118,13 @@ let spellsRepository = (function() {
 
 	function showModal(spell) {
 		// Clears all existing modal content
-		modalContainer.innerHTML = '';
-
-		let modal = document.createElement('div');
-		modal.classList.add('modal');
+		// modal.innerHTML = '';
 
 		// Adds the new modal content
-		let closeButtonElement = document.createElement('button');
-		closeButtonElement.classList.add('modal-close');
-		closeButtonElement.innerText = 'Close';
+		let closeButtonElement = document.querySelector('.modal-close');
 		closeButtonElement.addEventListener('click', hideModal);
 
-		let titleElement = document.createElement('h2');
+		let titleElement = document.querySelector('.modal_title');
 		titleElement.innerText = spell.name;
 
 		let descriptionString = '';
@@ -138,17 +136,17 @@ let spellsRepository = (function() {
 			}
 		});
 
-		let contentElement = document.createElement('p');
-		contentElement.innerHTML = `Description:  ${descriptionString}<br>Range: ${spell.range}<br>Duration: ${spell.duration}`;
+		let descriptionElement = document.querySelector('.modal_description');
+		descriptionElement.innerHTML = `Description:  ${descriptionString}`;
 
-		let imgElement = document.createElement('img');
-		imgElement.src = spell.imageUrl;
+		let rangeElement = document.querySelector('.modal_range');
+		rangeElement.innerHTML = `Range: ${spell.range}`;
 
-		modal.appendChild(closeButtonElement);
-		modal.appendChild(titleElement);
-		modal.appendChild(contentElement);
-		modal.appendChild(imgElement);
-		modalContainer.appendChild(modal);
+		let durationElement = document.querySelector('.modal_duration');
+		durationElement.innerHTML = `Duration: ${spell.duration}`;
+
+		let imgElement = document.querySelector('.modal_img');
+		//imgElement.src = spell.imageUrl;
 
 		modalContainer.classList.add('is-visible');
 	}

@@ -7,7 +7,7 @@
     	<title>Simple JS App</title>
     	<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Macondo&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 
@@ -18,7 +18,15 @@
 			</div>
 			<div class="spells-grid"></div>
 
-			<div id="modal-container"></div>
+			<div id="modal-container">
+				<div id="modal" class="modal">
+					<h2 class="modal_title"></h2>
+					<button class="modal-close">X</button>
+					<div class="modal_range"></div>
+					<div class="modal_duration"></div>
+					<p class="modal_description"></p>
+				</div>
+			</div>
 			<div class="loading-message hidden">Loading...</div>
 		</main>
 
