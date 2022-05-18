@@ -7,7 +7,6 @@
   --dark-grey: #2b2b2b; /* dark grey */
 
   --bold: 700;
-  --list-width: 350px;
   --list-width-small: 275px;
 }
 
@@ -70,8 +69,8 @@ main {
 	text-align: center;
 }
 
-#pokemon-logo {
-	width: var(--list-width);
+#dnd-logo {
+	width: 200px;
 }
 
 .loading-message {
