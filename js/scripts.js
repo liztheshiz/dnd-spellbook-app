@@ -39,28 +39,13 @@ let pokemonRepository = (function() {
 
 	// Adds new Pokemon button to pokemon-list
 	function addListItem(pokemon) {
-		let listItem = document.createElement('div');
-		listItem.innerHTML = `${pokemon.name}<br>`;
-		listItem.classList.add('list-group-item', 'list-group-item-active', 'list-item', 'text-center');
-
-		let listImage = document.createElement('img');
-		listImage.classList.add('list-item_image');
-		loadDetails(pokemon).then(function () {
-			listImage.src = pokemon.imageUrl;
-		});
-		listItem.appendChild(listImage);
-
 		let buttonItem = document.createElement('button');
-		buttonItem.classList.add('list-button');
+		buttonItem.innerText = pokemon.name;
+		buttonItem.classList.add('list-group-item', 'list-group-item-active', 'list-button');
 		buttonItem.setAttribute('data-target', '#modal-container');
 		buttonItem.setAttribute('data-toggle', 'modal');
-		let icon = document.createElement('img');
-		icon.classList.add('list-button_icon');
-		icon.src = 'img/menu-icon.png';
-		buttonItem.appendChild(icon);
 
-		listItem.appendChild(buttonItem);
-		buttonList.appendChild(listItem);
+		buttonList.appendChild(buttonItem);
 
 		buttonItem.addEventListener('click', () => showDetails(pokemon));
 	}
