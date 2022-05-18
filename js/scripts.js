@@ -129,17 +129,17 @@ let spellsRepository = (function() {
 		let titleElement = document.createElement('h2');
 		titleElement.innerText = spell.name;
 
-		/*let typesString = '';
-		spell.types.forEach(function (type, i) {
-			if (i < spell.types.length - 1) {
-				typesString += `${type.type.name}, `
+		let descriptionString = '';
+		spell.description.forEach(function (paragraph, i) {
+			if (i < spell.description.length - 1) {
+				descriptionString += `${paragraph}<br><br>`
 			} else {
-				typesString += `${type.type.name}`
+				descriptionString += `${paragraph}`
 			}
-		});*/
+		});
 
 		let contentElement = document.createElement('p');
-		contentElement.innerHTML = `Description: ${spell.description}<br>Range: ${spell.range}<br>Duration: ${spell.duration}`;
+		contentElement.innerHTML = `Description:  ${descriptionString}<br>Range: ${spell.range}<br>Duration: ${spell.duration}`;
 
 		let imgElement = document.createElement('img');
 		imgElement.src = spell.imageUrl;
