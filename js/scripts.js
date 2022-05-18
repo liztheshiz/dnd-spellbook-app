@@ -49,11 +49,7 @@ let spellsRepository = (function() {
 
 		let buttonItem = document.createElement('button');
 		buttonItem.classList.add('list-button');
-
-		let icon = document.createElement('img');
-		icon.classList.add('list-button_icon');
-		icon.src = 'img/button-icon.png';
-		buttonItem.appendChild(icon);
+		buttonItem.innerText = 'See Details';
 
 		listItem.appendChild(buttonItem);
 		spellsGrid.appendChild(listItem);
