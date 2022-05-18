@@ -36,7 +36,7 @@ let pokemonRepository = (function() {
 
 	// Adds new Pokemon button to pokemon-list
 	function addListItem(pokemon) {
-		let listItem = document.createElement('li');
+		let listItem = document.createElement('div');
 		listItem.innerHTML = `${pokemon.name}<br>`;
 		listItem.classList.add('list-item');
 
@@ -69,7 +69,7 @@ let pokemonRepository = (function() {
 		}
 	}
 
-	// Loads initial list of Pokemon from API with name and detailsURL attributes
+	// Loads initial list of Pokemon from API with name and detailsUrl attributes
 	function loadList() {
 	    loadingMessageHidden(false);
 	    return fetch(apiUrl).then(function (response) {
