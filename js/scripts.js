@@ -1,49 +1,49 @@
-// Initialize list of Pokemon + methods in IIFE
-let pokemonRepository = (function() {
+// Initialize list of spells + methods in IIFE
+let spellsRepository = (function() {
 	// >>VARIABLES<< //
-	let pokemonList = []; // Initialize pokemonList
-	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-	let pokemonKeys = ['name', 'detailsUrl', 'imageUrl', 'height', 'types']; // Accepted list of keys in Pokemon objects in pokemonList
-	let buttonList = document.querySelector('.pokemon-list'); // Selects .pokemon-list in DOM
+	let spellsList = []; // Initialize spellsList
+	let apiUrl = 'https://www.dnd5eapi.co/api/spells/';
+	//let spellKeys = ['name', 'detailsUrl', 'imageUrl', 'height', 'types']; // Accepted list of keys in spell objects in spellsList
+	let spellsGrid = document.querySelector('.spells-grid'); // Selects .spells-grid in DOM
 	let loadingMessage = document.querySelector('.loading-message'); // Selects .loading-message in DOM
 	let modalContainer = document.querySelector('#modal-container'); // Selects #modal-container in the DOM
 	// VARIABLES<< //
 
-	// Returns pokemonList
+	// Returns spellsList
 	function getAll() {
-		return pokemonList;
+		return spellsList;
 	}
 
-	// Adds new item to pokemonList
+	// Adds new item to spellsList
 	function add(item) {
-		// Only adds object types with keys found in pokemonKeys
-		if ((typeof item === 'object') && (Object.keys(item).every((element, i) => element === pokemonKeys[i]))) {
-			pokemonList.push(item);
+		// Only adds an object
+		if (typeof item === 'object') {//&& (Object.keys(item).every((element, i) => element === spellKeys[i]))) {
+			spellsList.push(item);
 		}
 	}
 
-	// Returns Pokemon object with given name
-	function findPokemon(name) {
-		// Create array of Pokemon with given name
-		let givenPokemon = pokemonList.filter(element => element.name === name);
-		// Returns either single Pokemon object, or array of objects if >1 Pokemon with same name
-		if (givenPokemon.length === 1) {
-			return givenPokemon[0];
-		} else if (givenPokemon.length > 1) {
-			return givenPokemon;
+	// Returns spell object with given name
+	function findSpell(name) {
+		// Create array of spells with given name
+		let givenSpell = spellsList.filter(element => element.name === name);
+		// Returns either single spell object, or array of objects if >1 spells with same name
+		if (givenSpell.length === 1) {
+			return givenSpell[0];
+		} else if (givenSpell.length > 1) {
+			return givenSpell;
 		}
 	}
 
-	// Adds new Pokemon button to pokemon-list
-	function addListItem(pokemon) {
+	// Adds new spell to spells-grid
+	function addListItem(spell) {
 		let listItem = document.createElement('div');
-		listItem.innerHTML = `${pokemon.name}<br>`;
+		listItem.innerHTML = `${spell.name}<br>`;
 		listItem.classList.add('list-item');
 
 		let listImage = document.createElement('img');
 		listImage.classList.add('list-item_image');
-		loadDetails(pokemon).then(function () {
-			listImage.src = pokemon.imageUrl;
+		loadDetails(spell).then(function () {
+			listImage.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png';
 		});
 		listItem.appendChild(listImage);
 
@@ -56,9 +56,9 @@ let pokemonRepository = (function() {
 		buttonItem.appendChild(icon);
 
 		listItem.appendChild(buttonItem);
-		buttonList.appendChild(listItem);
+		spellsGrid.appendChild(listItem);
 
-		buttonItem.addEventListener('click', () => showDetails(pokemon));
+		buttonItem.addEventListener('click', () => showDetails(spell));
 	}
 
 	function loadingMessageHidden(hide) {
@@ -69,7 +69,7 @@ let pokemonRepository = (function() {
 		}
 	}
 
-	// Loads initial list of Pokemon from API with name and detailsUrl attributes
+	// Loads initial list of spells from API with name and detailsUrl attributes
 	function loadList() {
 	    loadingMessageHidden(false);
 	    return fetch(apiUrl).then(function (response) {
@@ -78,11 +78,11 @@ let pokemonRepository = (function() {
 	    }).then(function (json) {
 	      	loadingMessageHidden(true);
 	      	json.results.forEach(function (item) {
-	        	let pokemon = {
+	        	let spell = {
 		          	name: item.name,
-		          	detailsUrl: item.url
+		          	detailsUrl: `https://www.dnd5eapi.co${item.url}`
 	        	};
-	        	add(pokemon);
+	        	add(spell);
 	      	});
 	    }).catch(function (e) {
 	      	loadingMessageHidden(true);
@@ -90,7 +90,7 @@ let pokemonRepository = (function() {
 	    })
 	}
 
-	// Adds additional details to given Pokemon object: image, height, and types
+	// Adds additional details to given spell object: image, height, and types
 	function loadDetails(item) {
 	    loadingMessageHidden(false);
 	    let url = item.detailsUrl;
@@ -99,10 +99,10 @@ let pokemonRepository = (function() {
 	      	return response.json();
 	    }).then(function (details) {
 	      	// Now we add the details to the item
-	      	item.imageUrl = details.sprites.front_default;
-	      	item.imageUrlBack = details.sprites.back_default;
-	      	item.height = details.height;
-	      	item.types = details.types;
+	      	item.description = details.desc;
+	      	//item.higherLevel = details.hight_level;
+	      	item.range = details.range;
+	      	item.duration = details.duration;
 	      	loadingMessageHidden(true);
 	    }).catch(function (e) {
 	      	loadingMessageHidden(true);
@@ -110,14 +110,14 @@ let pokemonRepository = (function() {
 	    });
 	}
 
-	// Logs name of given Pokemon in console
-	function showDetails(pokemon) {
-		loadDetails(pokemon).then(function () {
-			showModal(pokemon);
+	// Logs name of given spell in console
+	function showDetails(spell) {
+		loadDetails(spell).then(function () {
+			showModal(spell);
 		});
 	}
 
-	function showModal(pokemon) {
+	function showModal(spell) {
 		// Clears all existing modal content
 		modalContainer.innerHTML = '';
 
@@ -131,31 +131,27 @@ let pokemonRepository = (function() {
 		closeButtonElement.addEventListener('click', hideModal);
 
 		let titleElement = document.createElement('h2');
-		titleElement.innerText = pokemon.name;
+		titleElement.innerText = spell.name;
 
-		let typesString = '';
-		pokemon.types.forEach(function (type, i) {
-			if (i < pokemon.types.length - 1) {
+		/*let typesString = '';
+		spell.types.forEach(function (type, i) {
+			if (i < spell.types.length - 1) {
 				typesString += `${type.type.name}, `
 			} else {
 				typesString += `${type.type.name}`
 			}
-		});
+		});*/
 
 		let contentElement = document.createElement('p');
-		contentElement.innerHTML = `Height: ${pokemon.height}<br>Types: ${typesString}`;
+		contentElement.innerHTML = `Description: ${spell.description}<br>Range: ${spell.range}<br>Duration: ${spell.duration}`;
 
 		let imgElement = document.createElement('img');
-		imgElement.src = pokemon.imageUrl;
-
-		let imgElementBack = document.createElement('img');
-		imgElementBack.src = pokemon.imageUrlBack;
+		imgElement.src = spell.imageUrl;
 
 		modal.appendChild(closeButtonElement);
 		modal.appendChild(titleElement);
 		modal.appendChild(contentElement);
 		modal.appendChild(imgElement);
-		modal.appendChild(imgElementBack);
 		modalContainer.appendChild(modal);
 
 		modalContainer.classList.add('is-visible');
@@ -178,11 +174,11 @@ let pokemonRepository = (function() {
 		}
 	});
 
-	return {getAll, add, findPokemon, addListItem, loadList, loadDetails}
+	return {getAll, add, findSpell, addListItem, loadList, loadDetails}
 })();
 
-// Prints list of Pokemon in pokemonList on screen as buttons
-pokemonRepository.loadList().then(function() {
+// Prints list of spells in spellsList on screen as buttons
+spellsRepository.loadList().then(function() {
 	// Now the data is loaded!
-	pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
+	spellsRepository.getAll().forEach(spell => spellsRepository.addListItem(spell));
 });

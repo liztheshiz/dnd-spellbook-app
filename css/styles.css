@@ -27,7 +27,7 @@ body {
 	background-color: var(--background-color);
 	font-family: 'Karla', sans-serif;
 	font-weight: 400;
-	font-size: 30px;
+	font-size: 14px;
 	color: var(--dark-grey);
 	line-height: 1.4;
 }
@@ -73,7 +73,7 @@ main {
 	display: none;
 }
 
-.pokemon-list {
+.spells-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 10px;
@@ -214,7 +214,7 @@ main {
 		right: 20px;
 	}
 
-	.pokemon-list {
+	.spells-grid {
 		max-width: var(--list-width-small);
 	}
 
@@ -223,7 +223,7 @@ main {
 	}
 
 	@media all and (max-height: 550px) {
-		.pokemon-list {
+		.spells-grid {
 			margin-top: 0;
 		}
 
