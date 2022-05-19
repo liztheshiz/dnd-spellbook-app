@@ -287,8 +287,8 @@ main {
 
 .modal_subheading {
 	text-align: center;
-	margin-top: -10px;
-	margin-bottom: 10px;
+	margin-top: 0;
+	margin-bottom: 30px;
 }
 
 .modal_info {
@@ -329,6 +329,11 @@ main {
 	border-style: inset;
 }
 
+.modal_description_wrapper h5 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .modal-close {
   position: absolute;
   top: 16px;
@@ -354,12 +359,6 @@ main {
 	margin-bottom: 10px;
   line-height: 1.6;
   color: var(--dark-grey);
-}
-
-.modal img {
-	width: 200px;
-	height: auto;
-	margin-bottom: 10px;
 }
 
 
