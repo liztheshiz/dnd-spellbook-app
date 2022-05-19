@@ -45,12 +45,15 @@ let spellsRepository = (function() {
 		gridItemTitle.classList.add('spells-grid_item_title');
 		listItem.appendChild(gridItemTitle);
 
+		let imageWrapper = document.createElement('div');
+		imageWrapper.classList.add('list-image-wrapper');
 		let listImage = document.createElement('img');
 		listImage.classList.add('list-item_image');
 		loadDetails(spell).then(function () {
-			listImage.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png';
+			listImage.src = `img/schools/${spell.school.index}_no-title.png`;
 		});
-		listItem.appendChild(listImage);
+		imageWrapper.appendChild(listImage);
+		listItem.appendChild(imageWrapper);
 
 		spellsGrid.appendChild(listItem);
 

@@ -189,32 +189,18 @@ main {
 	margin: 0;
 }
 
+.list-image-wrapper {
+	width: 150px;
+	height: 150px;
+	background-color: black;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .list-item_image {
 	width: 100px;
-}
-
-.list-button {
-	background-color: #473d33;
-	border: 5px outset #3d342c;
-	border-radius: 5px;
-	font-family: 'EB Garamond', serif;
-	font-size: 20px;
-	color: var(--primary-color);
-	padding: 5px;
-}
-
-.list-button:hover, .list-button:focus {
-	cursor: pointer;
-	opacity: 0.85;
-}
-
-.list-button:active {
-	border-style: inset;
-}
-
-.list-button_icon {
-	width: 40px;
-	margin-top: 5px;
 }
 
 #modal-container {
