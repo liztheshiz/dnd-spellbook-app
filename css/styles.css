@@ -213,7 +213,9 @@ main {
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+	max-width: 300px;
 	box-shadow: rgba(255, 255, 255, 0.4) 0px 20px 70px 4px;
+	transition: all 0.2s;
 }
 
 .list-item:hover, .list-item:focus {
