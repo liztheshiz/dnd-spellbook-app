@@ -47,17 +47,22 @@ let spellsRepository = (function() {
 
 		let imageWrapper = document.createElement('div');
 		imageWrapper.classList.add('list-image-wrapper');
-		let listImage = document.createElement('img');
+/*		let listImage = document.createElement('img');
 		listImage.classList.add('list-item_image');
 		loadDetails(spell).then(function () {
 			listImage.src = `img/schools/${spell.school.index}.png`;
 		});
 		imageWrapper.appendChild(listImage);
 		listItem.appendChild(imageWrapper);
-
+*/
 		spellsGrid.appendChild(listItem);
 
-		listItem.addEventListener('click', () => showModal(spell));
+		listItem.addEventListener('click', () => showDetails(spell));
+	}
+
+	function showDetails(spell) {
+		loadingMessageHidden(false);
+		loadDetails(spell).then(() => showModal(spell)).then(() => loadingMessageHidden(true));
 	}
 
 	function loadingMessageHidden(hide) {
