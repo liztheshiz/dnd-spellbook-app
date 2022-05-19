@@ -153,14 +153,47 @@ main {
 /*	>>><<<
 		MAIN ELEMENTS
 		>>><<< */
-.title {
-	text-align: center;
+.overlay {
+	position: fixed;
+	padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 999;
+  display: grid;
+  grid-template-columns: 1fr;
+  
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto; 
+}
+
+.loading-image {
+	max-width: 300px;
+	margin: auto auto 40px;
+	box-sizing: border-box;
+}
+
+.loading-overlay_message {
+	max-width: 300px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	font-family: 'Macondo', cursive;
+	font-size: 60px;
 }
 
 .loading-message {
 	position: fixed;
 	bottom: 20px;
 	right: 40px;
+	font-size: 100px;
+	color: white;
+}
+
+.title {
+	text-align: center;
 }
 
 .hidden {

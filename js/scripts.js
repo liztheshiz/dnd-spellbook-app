@@ -3,9 +3,9 @@ let spellsRepository = (function() {
 	// >>VARIABLES<< //
 	let spellsList = []; // Initialize spellsList
 	let apiUrl = 'https://www.dnd5eapi.co/api/spells/';
-	//let spellKeys = ['name', 'detailsUrl', 'imageUrl', 'height', 'types']; // Accepted list of keys in spell objects in spellsList
+	let spellKeys = ['name', 'detailsUrl', 'level', 'school', 'castingTime', 'range', 'duration', 'areaOfEffect', 'classes', 'description', 'higherLevel']; // Accepted list of keys in spell objects in spellsList
 	let spellsGrid = document.querySelector('.spells-grid'); // Selects .spells-grid in DOM
-	let loadingMessage = document.querySelector('.loading-message'); // Selects .loading-message in DOM
+	let loadingMessage = document.querySelector('.overlay'); // Selects .loading-message in DOM
 	let modalContainer = document.querySelector('#modal-container'); // Selects #modal-container in the DOM
 	let modal = document.querySelector('#modal');
 	// VARIABLES<< //
@@ -18,7 +18,7 @@ let spellsRepository = (function() {
 	// Adds new item to spellsList
 	function add(item) {
 		// Only adds an object
-		if (typeof item === 'object') {//&& (Object.keys(item).every((element, i) => element === spellKeys[i]))) {
+		if (typeof item === 'object' && (Object.keys(item).every((element, i) => element === spellKeys[i]))) {
 			spellsList.push(item);
 		}
 	}
@@ -57,7 +57,7 @@ let spellsRepository = (function() {
 
 		spellsGrid.appendChild(listItem);
 
-		listItem.addEventListener('click', () => showDetails(spell));
+		listItem.addEventListener('click', () => showModal(spell));
 	}
 
 	function loadingMessageHidden(hide) {
@@ -72,10 +72,8 @@ let spellsRepository = (function() {
 	function loadList() {
 	    loadingMessageHidden(false);
 	    return fetch(apiUrl).then(function (response) {
-	      	loadingMessageHidden(true);
 	      	return response.json();
 	    }).then(function (json) {
-	      	loadingMessageHidden(true);
 	      	json.results.forEach(function (item) {
 	        	let spell = {
 		          	name: item.name,
@@ -89,36 +87,25 @@ let spellsRepository = (function() {
 	    })
 	}
 
-	// Adds additional details to given spell object: image, height, and types
+	// Adds additional details to given spell object
 	function loadDetails(item) {
-	    loadingMessageHidden(false);
 	    let url = item.detailsUrl;
 	    return fetch(url).then(function (response) {
-	      	loadingMessageHidden(true);
 	      	return response.json();
 	    }).then(function (details) {
 	      	// Now we add the details to the item
+	      	item.level = details.level;
+	      	item.school = details.school;
+	      	item.castingTime = details.casting_time;
 	      	item.range = details.range;
 	      	item.duration = details.duration;
-	      	item.level = details.level;
-	      	item.castingTime = details.casting_time;
-	      	item.school = details.school;
-	      	item.classes = details.classes;
 	      	item.areaOfEffect = details.area_of_effect;
+	      	item.classes = details.classes;
 	      	item.description = details.desc;
 	      	item.higherLevel = details.higher_level;
-	      	loadingMessageHidden(true);
 	    }).catch(function (e) {
-	      	loadingMessageHidden(true);
 	      	console.error(e);
 	    });
-	}
-
-	// Logs name of given spell in console
-	function showDetails(spell) {
-		loadDetails(spell).then(function () {
-			showModal(spell);
-		});
 	}
 
 	function showModal(spell) {
@@ -188,11 +175,12 @@ let spellsRepository = (function() {
 		}
 	});
 
-	return {getAll, add, findSpell, addListItem, loadList, loadDetails}
+	return {getAll, add, findSpell, addListItem, loadList, loadDetails, loadingMessageHidden}
 })();
 
 // Prints list of spells in spellsList on screen as buttons
 spellsRepository.loadList().then(function() {
 	// Now the data is loaded!
 	spellsRepository.getAll().forEach(spell => spellsRepository.addListItem(spell));
+	spellsRepository.loadingMessageHidden(true);
 });
