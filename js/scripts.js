@@ -10,7 +10,14 @@ let spellsRepository = (function() {
 
 	let showMoreButton = document.querySelector('.show-more-button');
 	let descriptionElement = document.querySelector('.modal_description');
-	showMoreButton.addEventListener('click', () => descriptionElement.classList.toggle('hidden'));
+	showMoreButton.addEventListener('click', function() {
+		if (descriptionElement.classList.contains('hidden')) {
+			showMoreButton.innerText = 'Hide description';
+		} else {
+			showMoreButton.innerText = 'Show description';
+		}
+		descriptionElement.classList.toggle('hidden');
+	});
 
 	let modal = document.querySelector('#modal');
 	// VARIABLES<< //

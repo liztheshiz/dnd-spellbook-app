@@ -268,6 +268,7 @@ main {
 
 .modal {
 	margin: auto;
+	display: grid;
 	box-sizing: border-box;
 	background: var(--primary-color);
 	border: 5px double #b8b291;
@@ -310,6 +311,22 @@ main {
 
 .modal_info_item p {
 	font-size: 18px;
+}
+
+.show-more-button {
+	margin: 20px auto 0;
+	width: 120px;
+	border: 3px outset #ded8af;
+	background: var(--primary-color);
+}
+
+.show-more-button:hover, .show-more-button:focus {
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+.show-more-button:active {
+	border-style: inset;
 }
 
 .modal-close {
