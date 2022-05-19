@@ -138,20 +138,26 @@ let spellsRepository = (function() {
 			}
 		});
 
-		let levelElement = document.querySelector('.modal_level');
-		levelElement.innerHTML = `Level: ${spell.level}`;
+		let levelElement = document.querySelector('.modal_subheading');
+		levelElement.innerHTML = `Level ${spell.level} ${spell.school.name}`;
 
-		let schoolElement = document.querySelector('.modal_school');
-		schoolElement.innerHTML = `School: ${spell.school.name}`;
+		let castingTimeElement = document.querySelector('.modal_info_casting-time');
+		castingTimeElement.innerHTML = `Casting Time: ${spell.castingTime}`;
 
-		let rangeElement = document.querySelector('.modal_range');
+		let rangeElement = document.querySelector('.modal_info_range');
 		rangeElement.innerHTML = `Range: ${spell.range}`;
 
-		let durationElement = document.querySelector('.modal_duration');
+		let durationElement = document.querySelector('.modal_info_duration');
 		durationElement.innerHTML = `Duration: ${spell.duration}`;
 
-		let castingTimeElement = document.querySelector('.modal_casting-time');
-		castingTimeElement.innerHTML = `Casting Time: ${spell.castingTime}`;
+		let areaOfEffectElement = document.querySelector('.modal_info_area-of-effect');
+		areaOfEffectString = 'Area of Effect: ';
+		if (spell.areaOfEffect) {
+			areaOfEffectString += `${spell.areaOfEffect.size} ft ${spell.areaOfEffect.type}`;
+		} else {
+			areaOfEffectString += 'none';
+		}
+		areaOfEffectElement.innerHTML = areaOfEffectString;
 
 		//let imgElement = document.querySelector('.modal_img');
 		//imgElement.src = spell.imageUrl;
@@ -160,6 +166,8 @@ let spellsRepository = (function() {
 		descriptionElement.innerHTML = `Description:  ${descriptionString}`;
 
 		modalContainer.classList.add('is-visible');
+		let showMoreButton = document.querySelector('.show-more-button');
+		showMoreButton.addEventListener('click', () => descriptionElement.classList.toggle('hidden'));
 	}
 
 	function hideModal() {

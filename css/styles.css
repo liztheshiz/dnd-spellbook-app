@@ -230,7 +230,6 @@ main {
 
 .modal {
 	margin: auto;
-	display: grid;
 	box-sizing: border-box;
 	background: var(--primary-color);
 	border: 5px double #b8b291;
@@ -242,6 +241,24 @@ main {
 	border-radius: 10px;
 }
 
+.modal_title {
+	text-align: center;
+	margin-bottom: -10px;
+}
+
+.modal_subheading {
+	text-align: center;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+.modal_info {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 6px;
+	margin: 0;
+}
+
 .modal-close {
   position: absolute;
   top: 16px;
@@ -251,10 +268,6 @@ main {
   background: none;
   color: #777;
   transform: translateX(-45%);
-}
-
-.modal_title {
-	text-align: center;
 }
 
 .modal-close:hover, .modal-close:focus {
