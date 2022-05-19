@@ -165,9 +165,10 @@ let spellsRepository = (function() {
 		let descriptionElement = document.querySelector('.modal_description');
 		descriptionElement.innerHTML = `Description:  ${descriptionString}`;
 
-		modalContainer.classList.add('is-visible');
 		let showMoreButton = document.querySelector('.show-more-button');
 		showMoreButton.addEventListener('click', () => descriptionElement.classList.toggle('hidden'));
+
+		modalContainer.classList.add('is-visible');
 	}
 
 	function hideModal() {
