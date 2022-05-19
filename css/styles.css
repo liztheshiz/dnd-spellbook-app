@@ -165,29 +165,24 @@ main {
   z-index: 999;
   display: grid;
   grid-template-columns: 1fr;
+
+  opacity: 0.5;
   
   /* to allow scrolling if the screen is not high enough*/
   overflow: auto; 
 }
 
 .loading-image {
-	max-width: 300px;
+	max-width: 100px;
 	margin: auto auto 40px;
 	box-sizing: border-box;
 }
 
 .loading-overlay_message {
 	max-width: 300px;
-	margin: 0 auto;
+	margin: auto;
 	box-sizing: border-box;
 	font-family: 'Macondo', cursive;
-	font-size: 60px;
-}
-
-.loading-message {
-	position: fixed;
-	bottom: 20px;
-	right: 40px;
 	font-size: 100px;
 	color: white;
 }
@@ -217,11 +212,12 @@ main {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	box-shadow: rgba(255, 255, 255, 0.4) 0px 30px 90px;
+	text-align: center;
+	box-shadow: rgba(255, 255, 255, 0.4) 0px 20px 70px 4px;
 }
 
 .list-item:hover, .list-item:focus {
-	box-shadow: rgba(255, 255, 255, 0.56) 0px 22px 70px 4px;
+	box-shadow: rgba(255, 255, 255, 0.6) 0px 20px 70px 20px;
 	cursor: pointer;
 }
 
