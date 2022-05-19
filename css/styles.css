@@ -27,7 +27,7 @@ body {
 	font-family: 'EB Garamond', serif;
 	font-weight: 400;
 	font-size: 16px;
-	color: var(--dark-grey);
+	color: var(--primary-color);
 	line-height: 1.4;
 }
 
@@ -68,6 +68,11 @@ h5 {
 
 main {
 	margin-top: 125px;
+	margin-bottom: 50px;
+}
+
+a {
+	color: #cf1f1f;
 }
 
 
@@ -118,6 +123,7 @@ main {
 
 .navigation-list__item {
   text-decoration: none;
+  font-size: 20px;
 }
 
 /* Nav link animation */
@@ -200,6 +206,8 @@ main {
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	gap: 50px;
 	margin: 20px;
+	width: 100%;
+	justify-content: space-evenly;
 }
 
 .list-item {
@@ -364,8 +372,45 @@ main {
 
 
 /*	>>><<<
+		ABOUT PAGE ELEMENTS
+		>>><<< */
+.about-text {
+	margin: 0 auto;
+	max-width: 900px;
+	font-size: 20px;
+}
+
+.about-subheading {
+	text-align: center;
+	color: var(--primary-color);
+}
+
+
+
+/*	>>><<<
 	RESPONSIVE ELEMENTS
 	>>><<< */
+
+@media all and (max-width: 1400px) {
+	.spells-grid {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+@media all and (max-width: 1150px) {
+	h1 {
+		font-size: 45px;
+	}
+
+	.list-item {
+
+	}
+
+	h3 {
+		font-size: 30px;
+	}
+}
+
 @media all and (max-width: 400px), all and (max-height: 550px) {
 	body {
 		font-size: 25px;
