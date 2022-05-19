@@ -40,7 +40,7 @@ h1 {
 
 h2 {
  	font-family: 'Macondo', cursive;
- 	font-size: 45px;
+ 	font-size: 50px;
  	font-weight: var(--bold);
  	color: var(--secondary-color);
 }
@@ -55,6 +55,13 @@ h3 {
 h4 {
 	font-family: 'Macondo', cursive;
   font-size: 30px;
+  font-weight: var(--bold);
+  color: var(--secondary-color);
+}
+
+h5 {
+	font-family: 'Cinzel', serif;
+  font-size: 20px;
   font-weight: var(--bold);
   color: var(--secondary-color);
 }
@@ -257,6 +264,21 @@ main {
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	gap: 6px;
 	margin: 0;
+}
+
+.modal_info_item {
+	text-align: center;
+	border: 3px solid var(--secondary-color);
+	border-radius: 3px;
+	padding: 5px 5px 0;
+}
+
+.modal_info_item h5, .modal_info_item p {
+	margin: 0;
+}
+
+.modal_info_item p {
+	font-size: 18px;
 }
 
 .modal-close {

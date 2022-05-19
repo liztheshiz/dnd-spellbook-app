@@ -142,20 +142,20 @@ let spellsRepository = (function() {
 		levelElement.innerHTML = `Level ${spell.level} ${spell.school.name}`;
 
 		let castingTimeElement = document.querySelector('.modal_info_casting-time');
-		castingTimeElement.innerHTML = `Casting Time: ${spell.castingTime}`;
+		castingTimeElement.innerHTML = `<h5>Casting Time</h5><p>${spell.castingTime}</p>`;
 
 		let rangeElement = document.querySelector('.modal_info_range');
-		rangeElement.innerHTML = `Range: ${spell.range}`;
+		rangeElement.innerHTML = `<h5>Range</h5><p>${spell.range}</p>`;
 
 		let durationElement = document.querySelector('.modal_info_duration');
-		durationElement.innerHTML = `Duration: ${spell.duration}`;
+		durationElement.innerHTML = `<h5>Duration</h5><p>${spell.duration}</p>`;
 
 		let areaOfEffectElement = document.querySelector('.modal_info_area-of-effect');
-		areaOfEffectString = 'Area of Effect: ';
+		areaOfEffectString = '<h5>Area of Effect</h5>';
 		if (spell.areaOfEffect) {
-			areaOfEffectString += `${spell.areaOfEffect.size} ft ${spell.areaOfEffect.type}`;
+			areaOfEffectString += `<p>${spell.areaOfEffect.size} ft ${spell.areaOfEffect.type}</p>`;
 		} else {
-			areaOfEffectString += 'none';
+			areaOfEffectString += '<p>none</p>';
 		}
 		areaOfEffectElement.innerHTML = areaOfEffectString;
 
