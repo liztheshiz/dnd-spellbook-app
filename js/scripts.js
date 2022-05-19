@@ -7,6 +7,11 @@ let spellsRepository = (function() {
 	let spellsGrid = document.querySelector('.spells-grid'); // Selects .spells-grid in DOM
 	let loadingMessage = document.querySelector('.overlay'); // Selects .loading-message in DOM
 	let modalContainer = document.querySelector('#modal-container'); // Selects #modal-container in the DOM
+
+	let showMoreButton = document.querySelector('.show-more-button');
+	let descriptionElement = document.querySelector('.modal_description');
+	showMoreButton.addEventListener('click', () => descriptionElement.classList.toggle('hidden'));
+
 	let modal = document.querySelector('#modal');
 	// VARIABLES<< //
 
@@ -114,21 +119,15 @@ let spellsRepository = (function() {
 	}
 
 	function showModal(spell) {
+		// Makes sure description is hidden when opening new modal
+		descriptionElement.classList.add('hidden');
+
 		// Adds the new modal content
 		let closeButtonElement = document.querySelector('.modal-close');
 		closeButtonElement.addEventListener('click', hideModal);
 
 		let titleElement = document.querySelector('.modal_title');
 		titleElement.innerText = spell.name;
-
-		let descriptionString = '';
-		spell.description.forEach(function (paragraph, i) {
-			if (i < spell.description.length - 1) {
-				descriptionString += `${paragraph}<br><br>`
-			} else {
-				descriptionString += `${paragraph}`
-			}
-		});
 
 		let levelElement = document.querySelector('.modal_subheading');
 		levelElement.innerHTML = `Level ${spell.level} ${spell.school.name}`;
@@ -154,11 +153,16 @@ let spellsRepository = (function() {
 		//let imgElement = document.querySelector('.modal_img');
 		//imgElement.src = spell.imageUrl;
 
-		let descriptionElement = document.querySelector('.modal_description');
-		descriptionElement.innerHTML = `Description:  ${descriptionString}`;
+		let descriptionString = '';
+		spell.description.forEach(function (paragraph, i) {
+			if ((i === spell.description.length - 1) || (spell.description.length === 1)){
+				descriptionString += `${paragraph}`
+			} else {
+				descriptionString += `${paragraph}<br><br>`
+			}
+		});
 
-		let showMoreButton = document.querySelector('.show-more-button');
-		showMoreButton.addEventListener('click', () => descriptionElement.classList.toggle('hidden'));
+		descriptionElement.innerHTML = `Description:  ${descriptionString}`;
 
 		modalContainer.classList.add('is-visible');
 	}
