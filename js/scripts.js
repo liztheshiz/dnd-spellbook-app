@@ -9,14 +9,15 @@ let spellsRepository = (function() {
 	let modalContainer = document.querySelector('#modal-container'); // Selects #modal-container in the DOM
 
 	let showMoreButton = document.querySelector('.show-more-button');
-	let descriptionElement = document.querySelector('.modal_description');
+	let descriptionElement = document.querySelector('.modal_description_wrapper');
+	let descriptionText = document.querySelector('.modal_description');
 	showMoreButton.addEventListener('click', function() {
-		if (descriptionElement.classList.contains('hidden')) {
-			showMoreButton.innerText = 'Hide description';
-		} else {
-			showMoreButton.innerText = 'Show description';
-		}
 		descriptionElement.classList.toggle('hidden');
+		if (descriptionElement.classList.contains('hidden')) {
+			showMoreButton.innerText = 'Show description';
+		} else {
+			showMoreButton.innerText = 'Hide description';
+		}
 	});
 
 	let modal = document.querySelector('#modal');
@@ -128,6 +129,7 @@ let spellsRepository = (function() {
 	function showModal(spell) {
 		// Makes sure description is hidden when opening new modal
 		descriptionElement.classList.add('hidden');
+		showMoreButton.innerText = 'Show description';
 
 		// Adds the new modal content
 		let closeButtonElement = document.querySelector('.modal-close');
@@ -169,7 +171,7 @@ let spellsRepository = (function() {
 			}
 		});
 
-		descriptionElement.innerHTML = `Description:  ${descriptionString}`;
+		descriptionText.innerHTML = `Description:  ${descriptionString}`;
 
 		modalContainer.classList.add('is-visible');
 	}
