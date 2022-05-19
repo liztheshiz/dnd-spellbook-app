@@ -50,7 +50,7 @@ let spellsRepository = (function() {
 		let listImage = document.createElement('img');
 		listImage.classList.add('list-item_image');
 		loadDetails(spell).then(function () {
-			listImage.src = `img/schools/${spell.school.index}_no-title.png`;
+			listImage.src = `img/schools/${spell.school.index}.png`;
 		});
 		imageWrapper.appendChild(listImage);
 		listItem.appendChild(imageWrapper);
@@ -98,13 +98,15 @@ let spellsRepository = (function() {
 	      	return response.json();
 	    }).then(function (details) {
 	      	// Now we add the details to the item
-	      	item.description = details.desc;
-	      	item.higherLevel = details.higher_level;
 	      	item.range = details.range;
 	      	item.duration = details.duration;
+	      	item.level = details.level;
 	      	item.castingTime = details.casting_time;
 	      	item.school = details.school;
 	      	item.classes = details.classes;
+	      	item.areaOfEffect = details.area_of_effect;
+	      	item.description = details.desc;
+	      	item.higherLevel = details.higher_level;
 	      	loadingMessageHidden(true);
 	    }).catch(function (e) {
 	      	loadingMessageHidden(true);
@@ -120,9 +122,6 @@ let spellsRepository = (function() {
 	}
 
 	function showModal(spell) {
-		// Clears all existing modal content
-		// modal.innerHTML = '';
-
 		// Adds the new modal content
 		let closeButtonElement = document.querySelector('.modal-close');
 		closeButtonElement.addEventListener('click', hideModal);
@@ -139,8 +138,11 @@ let spellsRepository = (function() {
 			}
 		});
 
-		let descriptionElement = document.querySelector('.modal_description');
-		descriptionElement.innerHTML = `Description:  ${descriptionString}`;
+		let levelElement = document.querySelector('.modal_level');
+		levelElement.innerHTML = `Level: ${spell.level}`;
+
+		let schoolElement = document.querySelector('.modal_school');
+		schoolElement.innerHTML = `School: ${spell.school.name}`;
 
 		let rangeElement = document.querySelector('.modal_range');
 		rangeElement.innerHTML = `Range: ${spell.range}`;
@@ -148,8 +150,14 @@ let spellsRepository = (function() {
 		let durationElement = document.querySelector('.modal_duration');
 		durationElement.innerHTML = `Duration: ${spell.duration}`;
 
-		let imgElement = document.querySelector('.modal_img');
+		let castingTimeElement = document.querySelector('.modal_casting-time');
+		castingTimeElement.innerHTML = `Casting Time: ${spell.castingTime}`;
+
+		//let imgElement = document.querySelector('.modal_img');
 		//imgElement.src = spell.imageUrl;
+
+		let descriptionElement = document.querySelector('.modal_description');
+		descriptionElement.innerHTML = `Description:  ${descriptionString}`;
 
 		modalContainer.classList.add('is-visible');
 	}
