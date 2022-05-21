@@ -218,6 +218,10 @@ a {
 	cursor: pointer;
 }
 
+.list-item:active {
+	border-style: ridge;
+}
+
 .spells-grid_item_title {
 	margin: 0;
 }
