@@ -1,15 +1,18 @@
-# Pokedex App
+# D&D Spellbook App
 
 ## Description
 
-This is a simple JavaScript application that uses data from an external API (for now, this is the Pokemon API) and displays it for the user to read.
+This is a simple JavaScript application that uses data from an external API (DnD5e) and displays named button for the user to click to view details. The user can also search for any spell by name in the search bar to view its details.
 
 ## Dependencies
 
 -HTML5
 -CSS3
 -JavaScript (ES6)
+-Fetch polyfill
+-Promise polyfill
+-Dnd 5e API
 
 ## API
 
-This app currently uses Pokemon API (but will change later in development).
+Dnd 5e API https://www.dnd5eapi.co/docs/#overview--getting-started
