@@ -96,6 +96,7 @@ a {
 .page-header_item {
 	flex-grow: 0;
 	max-height: 70px;
+	white-space: nowrap;
 }
 
 #dnd-logo {
@@ -111,10 +112,13 @@ a {
 
 .page-header_item:last-child {
 	text-align: right;
+	flex-shrink: 1;
+	max-width: 200px;
 }
 
 .navigation-list {
   list-style-type: none;
+  margin-left: -40px;
 }
 
 .navigation-list li {
@@ -427,11 +431,13 @@ a {
 		font-size: 40px;
 	}
 
+	.search-bar {
+		margin-left: 0px;
+	}
+
 	.subtitle {
 		font-size: 18px;
 	}
-
-	
 
 	.spells-grid {
 		grid-template-columns: 300px;
@@ -462,6 +468,29 @@ a {
 
 	h5 {
 		font-size: 14px;
+	}
+
+	main {
+		margin-top: 200px;
+	}
+
+	.page-header {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.search-bar {
+		margin-top: 10px;
+	}
+
+	.page-header_item:last-child {
+		margin-left: -20px;
+		margin-top: -7px;
+		margin-bottom: -10px;
+	}
+
+	.navigation-list__item {
+	  font-size: 18px;
 	}
 
 	.loading-overlay_message {
@@ -506,10 +535,6 @@ a {
 
 	h4 {
 		font-size: 22px;
-	}
-
-	.navigation-list__item {
-	  font-size: 18px;
 	}
 
 	.loading-overlay_message {
