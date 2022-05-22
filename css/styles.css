@@ -161,7 +161,7 @@ a {
 }
 
 .navigation-list__item--active {
-  font-weight: 500;
+  font-weight: var(--bold)
 }
 
 
