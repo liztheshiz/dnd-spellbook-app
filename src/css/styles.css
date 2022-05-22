@@ -70,7 +70,9 @@ main {
 }
 
 a {
-	color: var(--dnd-red);
+	background-color: #0a0a0a;
+	color: #e03636;
+	border-radius: 5px;
 }
 
 
@@ -156,7 +158,8 @@ a {
 }
 
 .navigation-list li a {
-	color: var(--primary-color)
+	color: var(--primary-color);
+	background: none;
 }
 
 .navigation-list__item {
