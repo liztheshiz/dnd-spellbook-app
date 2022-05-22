@@ -4,11 +4,12 @@
 	<head>
 		<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-    	<title>Simple JS App</title>
+    	<title>D&D 5e Spellbook | Home</title>
+    	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
     	<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Macondo&display=swap" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="src/css/styles.css">
 	</head>
 
 	<body>
@@ -16,7 +17,7 @@
 			<img class="page-header_item" id="dnd-logo" src="img/dnd-logo.png" alt="">
 
 			<div class="page-header_item search-bar">
-			  	<input class="search-bar_input" type="search" placeholder="Search"></input>
+			  	<input class="search-bar_input" type="search" placeholder="Enter spell name here">
 			  	<button class="search-bar_button" type="submit" value="search">Search</button>
 			</div>
 
@@ -36,12 +37,12 @@
 		</header>
 
 		<main>
-			<div class="overlay hidden" role="loading-screen">
+			<div class="loading-overlay hidden" role="loading-screen">
 				<p class="loading-overlay_message">Loading...</p>
 			</div>
 
 			<div class="title">
-				<h1>Dungeons & Dragons 5e: Spells</h1>
+				<h1>Dungeons &amp Dragons 5e: Spells</h1>
 			</div>
 			<h2 class="subtitle">Welcome! Please enter a valid spell name above or browse spells below to view its details.</h2>
 
@@ -59,7 +60,7 @@
 					</div>
 					<div class="modal_classes"></div>
 					<button class="show-more-button">Show description</button>
-					<div class="modal_description_wrapper hidden">
+					<div class="modal_description-wrapper hidden">
 						<h5>Description</h5>
 						<p class="modal_description"></p>
 					</div>
@@ -68,8 +69,8 @@
 			</div>
 		</main>
 
-		<script src="js/fetch-polyfill.js"></script>
-		<script src="js/promise-polyfill.js"></script>
-		<script src="js/scripts.js"></script>
+		<script src="src/js/fetch-polyfill.js"></script>
+		<script src="src/js/promise-polyfill.js"></script>
+		<script src="src/js/scripts.js"></script>
 	</body>
 </html>
