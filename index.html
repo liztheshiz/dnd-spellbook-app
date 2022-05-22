@@ -7,19 +7,65 @@
     	<title>Simple JS App</title>
     	<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Macondo&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 
 	<body>
-		<main>
-			<div class="title">
-				<img id="pokemon-logo" src="img/pokemon-logo.png">
-			</div>
-			<div class="loading-message hidden">Loading...</div>
-			<ul class="pokemon-list"></ul>
+		<header class="page-header">
+			<img class="page-header_item" id="dnd-logo" src="img/dnd-logo.png" alt="">
 
-			<div id="modal-container"></div>
+			<div class="page-header_item search-bar">
+			  	<input class="search-bar_input" type="search" placeholder="Search"></input>
+			  	<button class="search-bar_button" type="submit" value="search">Search</button>
+			</div>
+
+			<nav class="page-header_item">
+				<ul role="menubar" class="navigation-list">
+					<li role="presentation">
+						<a role="menuitem" href="index.html" class="navigation-list__item navigation-list__item--active">Home</a>
+					</li>
+					<li role="presentation">
+						<a role="menuitem" href="about.html" class="navigation-list__item">About</a>
+					</li>
+					<li role="presentation">
+						<a role="menuitem" href="https://www.dnd5eapi.co/docs/#overview" class="navigation-list__item" target="_blank">API</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<div class="overlay hidden" role="loading-screen">
+				<p class="loading-overlay_message">Loading...</p>
+			</div>
+
+			<div class="title">
+				<h1>Dungeons & Dragons 5e: Spells</h1>
+			</div>
+			<h2 class="subtitle">Welcome! Please enter a valid spell name above or browse spells below to view its details.</h2>
+
+			<div class="spells-grid"></div>
+
+			<div id="modal-container">
+				<div id="modal" class="modal">
+					<h2 class="modal_title"></h2>
+					<h4 class="modal_subheading"></h4>
+					<div class="modal_info">
+						<div class="modal_info_item modal_info_casting-time"></div>
+						<div class="modal_info_item modal_info_range"></div>
+						<div class="modal_info_item modal_info_duration"></div>
+						<div class="modal_info_item modal_info_area-of-effect"></div>
+					</div>
+					<div class="modal_classes"></div>
+					<button class="show-more-button">Show description</button>
+					<div class="modal_description_wrapper hidden">
+						<h5>Description</h5>
+						<p class="modal_description"></p>
+					</div>
+					<button class="modal-close">X</button>
+				</div>
+			</div>
 		</main>
 
 		<script src="js/fetch-polyfill.js"></script>
