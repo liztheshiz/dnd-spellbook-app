@@ -13,11 +13,12 @@
 	</head>
 
 	<body>
-		<header class="page-header">
+		<header class="page-header" role="presentation">
 			<img class="page-header_item" id="dnd-logo" src="img/dnd-logo.png" alt="">
 
-			<div class="page-header_item search-bar">
-			  	<input class="search-bar_input" type="search" placeholder="Enter spell name here">
+			<div class="page-header_item search-bar" role="presentation">
+			  	<label for="search-bar_input" class="hidden">Enter spell name here for search</label>
+			  	<input id="search-bar_input" class="search-bar_input" type="search" placeholder="Enter spell name here" role="searchbox">
 			  	<button class="search-bar_button" type="submit" value="search">Search</button>
 			</div>
 
@@ -36,8 +37,8 @@
 			</nav>
 		</header>
 
-		<main>
-			<div class="loading-overlay hidden" role="loading-screen">
+		<main role="presentation">
+			<div class="loading-overlay hidden" role="presentation">
 				<p class="loading-overlay_message">Loading...</p>
 			</div>
 
@@ -46,25 +47,37 @@
 			</div>
 			<h2 class="subtitle">Welcome! Please enter a valid spell name above or browse spells below to view its details.</h2>
 
-			<div class="spells-grid"></div>
+			<div class="spells-grid" role="presentation"></div>
 
 			<div id="modal-container">
-				<div id="modal" class="modal">
+				<div id="modal" class="modal" aria-label="Modal pop-up window">
 					<h2 class="modal_title"></h2>
 					<h4 class="modal_subheading"></h4>
-					<div class="modal_info">
-						<div class="modal_info_item modal_info_casting-time"></div>
-						<div class="modal_info_item modal_info_range"></div>
-						<div class="modal_info_item modal_info_duration"></div>
-						<div class="modal_info_item modal_info_area-of-effect"></div>
+					<div class="modal_info" role="presentation">
+						<div class="modal_info_item modal_info_casting-time" role="presentation">
+							<h5>Casting Time</h5>
+							<p></p>
+						</div>
+						<div class="modal_info_item modal_info_range" role="presentation">
+							<h5>Range</h5>
+							<p></p>
+						</div>
+						<div class="modal_info_item modal_info_duration" role="presentation">
+							<h5>Duration</h5>
+							<p></p>
+						</div>
+						<div class="modal_info_item modal_info_area-of-effect" role="presentation">
+							<h5>Area of Effect</h5>
+							<p></p>
+						</div>
 					</div>
-					<div class="modal_classes"></div>
+					<div class="modal_classes" role="presentation"></div>
 					<button class="show-more-button">Show description</button>
-					<div class="modal_description-wrapper hidden">
+					<div class="modal_description-wrapper hidden" role="presentation">
 						<h5>Description</h5>
 						<p class="modal_description"></p>
 					</div>
-					<button class="modal-close">X</button>
+					<button class="modal-close" role="button" aria-label="Click to exit modal">X</button>
 				</div>
 			</div>
 		</main>
@@ -72,5 +85,7 @@
 		<script src="dist/js/fetch-polyfill.js"></script>
 		<script src="dist/js/promise-polyfill.js"></script>
 		<script src="dist/js/scripts.js"></script>
+
+		<script src="src/js/tota11y.min.js"></script>
 	</body>
 </html>
