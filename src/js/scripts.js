@@ -14,10 +14,10 @@ let spellsRepository = (function() {
 	let modalContainer = document.querySelector('#modal-container');
 	let titleElement = document.querySelector('.modal_title');
 	let levelElement = document.querySelector('.modal_subheading');
-	let castingTimeElement = document.querySelector('.modal_info_casting-time');
-	let rangeElement = document.querySelector('.modal_info_range');
-	let durationElement = document.querySelector('.modal_info_duration');
-	let areaOfEffectElement = document.querySelector('.modal_info_area-of-effect');
+	let castingTimeElement = document.querySelector('.modal_info_casting-time p');
+	let rangeElement = document.querySelector('.modal_info_range p');
+	let durationElement = document.querySelector('.modal_info_duration p');
+	let areaOfEffectElement = document.querySelector('.modal_info_area-of-effect p');
 	let showMoreButton = document.querySelector('.show-more-button');
 	let descriptionElement = document.querySelector('.modal_description-wrapper');
 	let descriptionText = document.querySelector('.modal_description');
@@ -119,19 +119,19 @@ let spellsRepository = (function() {
 
 		// Adds the new modal content to HTML elements selected in the DOM
 		titleElement.innerText = spell.name;
-		levelElement.innerHTML = `Level ${spell.level} ${spell.school.name}`;
-		castingTimeElement.innerHTML = `<h5>Casting Time</h5><p>${spell.castingTime}</p>`;
-		rangeElement.innerHTML = `<h5>Range</h5><p>${spell.range}</p>`;
-		durationElement.innerHTML = `<h5>Duration</h5><p>${spell.duration}</p>`;
+		levelElement.innerText = `Level ${spell.level} ${spell.school.name}`;
+		castingTimeElement.innerText = `${spell.castingTime}`;
+		rangeElement.innerText = `${spell.range}`;
+		durationElement.innerText = `${spell.duration}`;
 		
 		// Special AOE case handler (no AOE attribute)
-		let areaOfEffectString = '<h5>Area of Effect</h5>';
+		let areaOfEffectString = '';
 		if (spell.areaOfEffect) {
-			areaOfEffectString += `<p>${spell.areaOfEffect.size} ft ${spell.areaOfEffect.type}</p>`;
+			areaOfEffectString += `${spell.areaOfEffect.size} ft ${spell.areaOfEffect.type}`;
 		} else {
-			areaOfEffectString += '<p>none</p>';
+			areaOfEffectString += 'none';
 		}
-		areaOfEffectElement.innerHTML = areaOfEffectString;
+		areaOfEffectElement.innerText = areaOfEffectString;
 
 		// Build description string from description array of paragraphs
 		let descriptionString = '';
