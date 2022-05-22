@@ -87,6 +87,8 @@ a {
 	left: 0px;
 	background-color: var(--background-color);
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	padding: 14px;
 }
@@ -101,8 +103,12 @@ a {
 	height: auto;
 }
 
+.search-bar {
+	height: 40px;
+	margin-left: 140px;
+}
+
 .page-header_item:last-child {
-	flex-grow: 1;
 	text-align: right;
 }
 
