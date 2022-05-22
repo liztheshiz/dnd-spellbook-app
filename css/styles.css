@@ -123,8 +123,8 @@ a {
 	font-family: 'EB Garamond', serif;
 	font-size: 16px;
 	border: none;
-	background-color: #a80808;
-	color: var(--primary-color);
+	background-color: #bf2121;
+	color: var(--secondary-color);
 	border-radius: 5px;
 	box-shadow: rgba(0, 0, 0, 0.3) 0px -3px 5px 0px inset;
 	box-sizing: border-box;
