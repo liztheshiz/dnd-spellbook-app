@@ -77,6 +77,8 @@ let spellsRepository = (function() {
 		let gridItemTitle = document.createElement('h3');
 		gridItemTitle.innerHTML = spell.name;
 		gridItemTitle.classList.add('spells-grid_item_title');
+		gridItem.setAttribute('role', 'presentation');
+		gridItem.setAttribute('aria-label', 'Click here to view spell details');
 		gridItem.appendChild(gridItemTitle);
 
 		spellsGrid.appendChild(gridItem);
