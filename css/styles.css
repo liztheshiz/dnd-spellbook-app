@@ -326,6 +326,7 @@ a {
 	margin: 20px auto 0;
 	width: 120px;
 	border: 3px outset #ded8af;
+	color: var(--secondary-color);
 	font-family: 'EB Garamond', serif;
 	background: var(--primary-color);
 }
