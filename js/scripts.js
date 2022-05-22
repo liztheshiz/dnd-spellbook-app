@@ -1,84 +1,98 @@
-// Initialize list of Pokemon + methods in IIFE
-let pokemonRepository = (function() {
+// Initialize list of spells + methods in IIFE
+let spellsRepository = (function() {
 	// >>VARIABLES<< //
-	let pokemonList = []; // Initialize pokemonList
-	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-	let pokemonKeys = ['name', 'detailsUrl', 'imageUrl', 'height', 'types']; // Accepted list of keys in Pokemon objects in pokemonList
-	let buttonList = document.querySelector('.list-group'); // Selects .pokemon-list in DOM
-	let loadingMessage = document.querySelector('.loading-message'); // Selects .loading-message in DOM
+	let spellsList = []; // Initialize spellsList
+	let apiUrl = 'https://www.dnd5eapi.co/api/spells/';
+	let spellKeys = ['index', 'name', 'detailsUrl', 'level', 'school', 'castingTime', 'range', 'duration', 'areaOfEffect', 'classes', 'description', 'higherLevel']; // Accepted list of keys in spell objects in spellsList
+	let spellsGrid = document.querySelector('.spells-grid'); // Selects .spells-grid in DOM
+	let loadingMessage = document.querySelector('.overlay'); // Selects .loading-message in DOM
+	let searchInput = document.querySelector('.search-bar_input');
+	let searchButton = document.querySelector('.search-bar_button');
+
 	let modalContainer = document.querySelector('#modal-container'); // Selects #modal-container in the DOM
-	let titleElement = document.querySelector('.modal-title'); // Selects .modal-title in the DOM
-	let contentElement = document.querySelector('.modal-body'); // Selects .modal-body in the DOM
-	let imgElement = document.querySelector('.modal-image'); // Selects .modal-image in the DOM
+
+	let showMoreButton = document.querySelector('.show-more-button');
+	let descriptionElement = document.querySelector('.modal_description_wrapper');
+	let descriptionText = document.querySelector('.modal_description');
+	showMoreButton.addEventListener('click', function() {
+		descriptionElement.classList.toggle('hidden');
+		if (descriptionElement.classList.contains('hidden')) {
+			showMoreButton.innerText = 'Show description';
+		} else {
+			showMoreButton.innerText = 'Hide description';
+		}
+	});
+
+	let modal = document.querySelector('#modal');
 	// VARIABLES<< //
 
-	// Returns pokemonList
+	// Returns spellsList
 	function getAll() {
-		return pokemonList;
+		return spellsList;
 	}
 
-	// Adds new item to pokemonList
+	// Adds new item to spellsList
 	function add(item) {
-		// Only adds object types with keys found in pokemonKeys
-		if ((typeof item === 'object') && (Object.keys(item).every((element, i) => element === pokemonKeys[i]))) {
-			pokemonList.push(item);
+		// Only adds an object
+		if (typeof item === 'object' && (Object.keys(item).every((element, i) => element === spellKeys[i]))) {
+			spellsList.push(item);
 		}
 	}
 
-	// Returns Pokemon object with given name
-	function findPokemon(name) {
-		// Create array of Pokemon with given name
-		let givenPokemon = pokemonList.filter(element => element.name === name);
-		// Returns either single Pokemon object, or array of objects if >1 Pokemon with same name
-		if (givenPokemon.length === 1) {
-			return givenPokemon[0];
-		} else if (givenPokemon.length > 1) {
-			return givenPokemon;
+	// Returns spell object with given name
+	function findSpell(name) {
+		// First normalize search input to match index formatting
+		let formattedName = name.replace(/\s+/g, '-').toLowerCase();
+		let givenSpell = spellsList.filter(element => element.index === formattedName);
+		// Returns either single spell object, or array of objects if >1 spells with same name
+		if (givenSpell.length === 1) {
+			return givenSpell[0];
+		} else {
+			return null;
 		}
 	}
 
-	// Adds new Pokemon button to pokemon-list
-	function addListItem(pokemon) {
-		let buttonItem = document.createElement('button');
-		buttonItem.innerText = pokemon.name;
-		buttonItem.classList.add('list-group-item', 'list-group-item-active', 'list-button');
-		buttonItem.setAttribute('data-target', '#modal-container');
-		buttonItem.setAttribute('data-toggle', 'modal');
+	// Adds new spell to spells-grid
+	function addListItem(spell) {
+		let listItem = document.createElement('div');
+		listItem.classList.add('list-item');
 
-		buttonList.appendChild(buttonItem);
+		let gridItemTitle = document.createElement('h3');
+		gridItemTitle.innerHTML = spell.name;
+		gridItemTitle.classList.add('spells-grid_item_title');
+		listItem.appendChild(gridItemTitle);
 
-		buttonItem.addEventListener('click', () => showDetails(pokemon));
+		spellsGrid.appendChild(listItem);
+
+		listItem.addEventListener('click', () => showDetails(spell));
+	}
+
+	function showDetails(spell) {
+		loadingMessageHidden(false);
+		loadDetails(spell).then(() => showModal(spell)).then(() => loadingMessageHidden(true));
 	}
 
 	function loadingMessageHidden(hide) {
 		if (hide) {
-			loadingMessage.classList.replace('d-block', 'd-none');
+			loadingMessage.classList.add('hidden');
 		} else {
-			loadingMessage.classList.replace('d-none', 'd-block');
+			loadingMessage.classList.remove('hidden');
 		}
 	}
 
-	// Logs name of given Pokemon in console
-	function showDetails(pokemon) {
-		loadDetails(pokemon).then(function () {
-			showModal(pokemon);
-		});
-	}
-
-	// Loads initial list of Pokemon from API with name and detailsURL attributes
+	// Loads initial list of spells from API with name and detailsUrl attributes
 	function loadList() {
 	    loadingMessageHidden(false);
 	    return fetch(apiUrl).then(function (response) {
-	      	loadingMessageHidden(true);
 	      	return response.json();
 	    }).then(function (json) {
-	      	loadingMessageHidden(true);
 	      	json.results.forEach(function (item) {
-	        	let pokemon = {
+	        	let spell = {
+		          	index: item.index,
 		          	name: item.name,
-		          	detailsUrl: item.url
+		          	detailsUrl: `https://www.dnd5eapi.co${item.url}`
 	        	};
-	        	add(pokemon);
+	        	add(spell);
 	      	});
 	    }).catch(function (e) {
 	      	loadingMessageHidden(true);
@@ -86,53 +100,111 @@ let pokemonRepository = (function() {
 	    })
 	}
 
-	// Adds additional details to given Pokemon object: image, height, and types
+	// Adds additional details to given spell object
 	function loadDetails(item) {
-	    loadingMessageHidden(false);
 	    let url = item.detailsUrl;
 	    return fetch(url).then(function (response) {
-	      	loadingMessageHidden(true);
 	      	return response.json();
 	    }).then(function (details) {
 	      	// Now we add the details to the item
-	      	item.imageUrl = details.sprites.front_default;
-	      	item.height = details.height;
-	      	item.types = details.types;
-	      	loadingMessageHidden(true);
+	      	item.level = details.level;
+	      	item.school = details.school;
+	      	item.castingTime = details.casting_time;
+	      	item.range = details.range;
+	      	item.duration = details.duration;
+	      	item.areaOfEffect = details.area_of_effect;
+	      	item.classes = details.classes;
+	      	item.description = details.desc;
+	      	item.higherLevel = details.higher_level;
 	    }).catch(function (e) {
-	      	loadingMessageHidden(true);
 	      	console.error(e);
 	    });
 	}
 
-	function showModal(pokemon) {
-		// Clears all existing modal content
-		titleElement.innerHTML = '';
-		contentElement.innerHTML = '';
+	function showModal(spell) {
+		// Makes sure description is hidden when opening new modal
+		descriptionElement.classList.add('hidden');
+		showMoreButton.innerText = 'Show description';
 
 		// Adds the new modal content
-		titleElement.innerText = pokemon.name;
+		let closeButtonElement = document.querySelector('.modal-close');
+		closeButtonElement.addEventListener('click', hideModal);
 
-		let typesString = '';
-		pokemon.types.forEach(function (type, i) {
-			if (i < pokemon.types.length - 1) {
-				typesString += `${type.type.name}, `
+		let titleElement = document.querySelector('.modal_title');
+		titleElement.innerText = spell.name;
+
+		let levelElement = document.querySelector('.modal_subheading');
+		levelElement.innerHTML = `Level ${spell.level} ${spell.school.name}`;
+
+		let castingTimeElement = document.querySelector('.modal_info_casting-time');
+		castingTimeElement.innerHTML = `<h5>Casting Time</h5><p>${spell.castingTime}</p>`;
+
+		let rangeElement = document.querySelector('.modal_info_range');
+		rangeElement.innerHTML = `<h5>Range</h5><p>${spell.range}</p>`;
+
+		let durationElement = document.querySelector('.modal_info_duration');
+		durationElement.innerHTML = `<h5>Duration</h5><p>${spell.duration}</p>`;
+
+		let areaOfEffectElement = document.querySelector('.modal_info_area-of-effect');
+		areaOfEffectString = '<h5>Area of Effect</h5>';
+		if (spell.areaOfEffect) {
+			areaOfEffectString += `<p>${spell.areaOfEffect.size} ft ${spell.areaOfEffect.type}</p>`;
+		} else {
+			areaOfEffectString += '<p>none</p>';
+		}
+		areaOfEffectElement.innerHTML = areaOfEffectString;
+
+		//let imgElement = document.querySelector('.modal_img');
+		//imgElement.src = spell.imageUrl;
+
+		let descriptionString = '';
+		spell.description.forEach(function (paragraph, i) {
+			if ((i === spell.description.length - 1) || (spell.description.length === 1)){
+				descriptionString += `${paragraph}`
 			} else {
-				typesString += `${type.type.name}`
+				descriptionString += `${paragraph}<br><br>`
 			}
 		});
 
-		contentElement.innerHTML = `Height: ${pokemon.height}<br>Types: ${typesString}<br>`;
+		descriptionText.innerHTML = `Description:  ${descriptionString}`;
 
-		imgElement.src = pokemon.imageUrl;
-		contentElement.appendChild(imgElement);
+		modalContainer.classList.add('is-visible');
 	}
 
-	return {getAll, add, findPokemon, addListItem, loadList, loadDetails}
+	function hideModal() {
+	  	modalContainer.classList.remove('is-visible');
+	}
+
+	window.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+			hideModal();
+		}
+	});
+
+	modalContainer.addEventListener('click', (e) => {
+		let target = e.target;
+		if (target === modalContainer) {
+			hideModal();
+		}
+	});
+
+	searchButton.addEventListener('click', (e) => {
+		let searchValue = searchInput.value;
+		let spell = findSpell(searchValue);
+
+		if (spell) {
+			showDetails(spell);
+		} else {
+			alert('Spell not found! Please check your... "spell"-ing.');
+		}
+	})
+
+	return {getAll, add, findSpell, addListItem, loadList, loadDetails, loadingMessageHidden}
 })();
 
-// Prints list of Pokemon in pokemonList on screen as buttons
-pokemonRepository.loadList().then(function() {
+// Prints list of spells in spellsList on screen as buttons
+spellsRepository.loadList().then(function() {
 	// Now the data is loaded!
-	pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
+	spellsRepository.getAll().forEach(spell => spellsRepository.addListItem(spell));
+	spellsRepository.loadingMessageHidden(true);
 });
