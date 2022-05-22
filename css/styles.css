@@ -106,6 +106,7 @@ a {
 .search-bar {
 	height: 40px;
 	margin-left: 140px;
+	padding-top: 9px;
 }
 
 .page-header_item:last-child {
@@ -120,7 +121,6 @@ a {
 	position: relative;
 	display: inline-block;
 	margin-left: 15px;
-	margin-top: 6px;
 }
 
 .navigation-list li a {
@@ -415,6 +415,8 @@ a {
 	h1 {
 		font-size: 40px;
 	}
+
+
 
 	.spells-grid {
 		grid-template-columns: 300px;
