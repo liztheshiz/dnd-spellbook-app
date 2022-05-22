@@ -142,7 +142,7 @@ let spellsRepository = (function() {
 				descriptionString += `${paragraph}<br><br>`
 			}
 		});
-		descriptionText.innerHTML = `Description:  ${descriptionString}`;
+		descriptionText.innerHTML = `${descriptionString}`;
 
 		modalContainer.classList.add('is-visible');
 	}
