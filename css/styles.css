@@ -472,21 +472,27 @@ a {
 	}
 
 	main {
-		margin-top: 200px;
+		margin-top: 214px;
+	}
+
+	.about-main {
+		margin-top: 170px;
 	}
 
 	.page-header {
 		flex-direction: column;
 		justify-content: center;
+		border-bottom: 1px solid var(--primary-color);
 	}
 
 	.search-bar {
-		margin-top: 10px;
+		margin-top: 3px;
+		margin-bottom: -3px;
+		order: 3;
 	}
 
 	.page-header_item:last-child {
 		margin-left: -20px;
-		margin-top: -7px;
 		margin-bottom: -10px;
 	}
 
