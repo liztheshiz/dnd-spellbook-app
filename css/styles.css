@@ -120,8 +120,9 @@ a {
 }
 
 .search-bar_button {
-	font-family: 'EB Garamond', serif;
+	font-family: 'Cinzel', serif;
 	font-size: 16px;
+	font-weight: var(--bold);
 	border: none;
 	background-color: #bf2121;
 	color: var(--secondary-color);
