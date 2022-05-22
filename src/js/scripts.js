@@ -12,7 +12,6 @@ let spellsRepository = (function() {
 	let searchInput = document.querySelector('.search-bar_input');
 	let searchButton = document.querySelector('.search-bar_button');
 	let modalContainer = document.querySelector('#modal-container');
-	let modal = document.querySelector('#modal');
 	let titleElement = document.querySelector('.modal_title');
 	let levelElement = document.querySelector('.modal_subheading');
 	let castingTimeElement = document.querySelector('.modal_info_casting-time');
@@ -47,22 +46,22 @@ let spellsRepository = (function() {
 
 	// Loads initial list of spells from API with index, name, and detailsUrl attributes
 	function loadList() {
-	    loadingMessageHidden(false);
-	    return fetch(apiUrl).then(function (response) {
-	      	return response.json();
-	    }).then(function (json) {
-	      	json.results.forEach(function (item) {
-	        	let spell = {
-		          	index: item.index,
-		          	name: item.name,
-		          	detailsUrl: `https://www.dnd5eapi.co${item.url}`
-	        	};
-	        	add(spell);
-	      	});
-	    }).catch(function (e) {
-	      	loadingMessageHidden(true);
-	      	console.error(e);
-	    })
+		loadingMessageHidden(false);
+		return fetch(apiUrl).then(function (response) {
+			return response.json();
+		}).then(function (json) {
+			json.results.forEach(function (item) {
+				let spell = {
+					index: item.index,
+					name: item.name,
+					detailsUrl: `https://www.dnd5eapi.co${item.url}`
+				};
+				add(spell);
+			});
+		}).catch(function (e) {
+			loadingMessageHidden(true);
+			console.error(e);
+		})
 	}
 
 	// Returns spellsList array
@@ -93,23 +92,23 @@ let spellsRepository = (function() {
 
 	// Adds additional details to given spell object (used in show details)
 	function loadDetails(item) {
-	    let url = item.detailsUrl;
-	    return fetch(url).then(function (response) {
-	      	return response.json();
-	    }).then(function (details) {
-	      	// Now we add the details to the item
-	      	item.level = details.level;
-	      	item.school = details.school;
-	      	item.castingTime = details.casting_time;
-	      	item.range = details.range;
-	      	item.duration = details.duration;
-	      	item.areaOfEffect = details.area_of_effect;
-	      	item.classes = details.classes;
-	      	item.description = details.desc;
-	      	item.higherLevel = details.higher_level;
-	    }).catch(function (e) {
-	      	console.error(e);
-	    });
+		let url = item.detailsUrl;
+		return fetch(url).then(function (response) {
+			return response.json();
+		}).then(function (details) {
+			// Now we add the details to the item
+			item.level = details.level;
+			item.school = details.school;
+			item.castingTime = details.casting_time;
+			item.range = details.range;
+			item.duration = details.duration;
+			item.areaOfEffect = details.area_of_effect;
+			item.classes = details.classes;
+			item.description = details.desc;
+			item.higherLevel = details.higher_level;
+		}).catch(function (e) {
+			console.error(e);
+		});
 	}
 
 	// Shows modal with details of given spell
@@ -126,7 +125,7 @@ let spellsRepository = (function() {
 		durationElement.innerHTML = `<h5>Duration</h5><p>${spell.duration}</p>`;
 		
 		// Special AOE case handler (no AOE attribute)
-		areaOfEffectString = '<h5>Area of Effect</h5>';
+		let areaOfEffectString = '<h5>Area of Effect</h5>';
 		if (spell.areaOfEffect) {
 			areaOfEffectString += `<p>${spell.areaOfEffect.size} ft ${spell.areaOfEffect.type}</p>`;
 		} else {
@@ -150,7 +149,7 @@ let spellsRepository = (function() {
 
 	// Hides modal (called in event listeners)
 	function hideModal() {
-	  	modalContainer.classList.remove('is-visible');
+		modalContainer.classList.remove('is-visible');
 	}
 
 	// Returns spell object with given name (used in search bar)
@@ -171,7 +170,7 @@ let spellsRepository = (function() {
 
 	// EVENT LISTENERS >>>
 	// Searchs list of spells for user's input and loads its details in the modal if found
-	searchButton.addEventListener('click', (e) => {
+	searchButton.addEventListener('click', () => {
 		let searchValue = searchInput.value;
 		let spell = findSpell(searchValue);
 
@@ -201,7 +200,7 @@ let spellsRepository = (function() {
 	closeButtonElement.addEventListener('click', hideModal);
 
 	// Shows/hides more spell info if user clicks button
-	showMoreButton.addEventListener('click', (e) => {
+	showMoreButton.addEventListener('click', () => {
 		descriptionElement.classList.toggle('hidden');
 		if (descriptionElement.classList.contains('hidden')) {
 			showMoreButton.innerText = 'Show description';
