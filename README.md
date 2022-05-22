@@ -15,4 +15,4 @@ This is a simple JavaScript application that uses data from an external API (DnD
 
 ## API
 
-Dnd 5e API https://www.dnd5eapi.co/docs/#overview--getting-started
+This website load information directly from the [Dnd 5e API](https://www.dnd5eapi.co/docs/#overview--getting-started).
