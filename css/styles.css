@@ -225,6 +225,9 @@ a {
 	padding: 30px;
 	border-radius: 10px;
 	border: 2px groove #b8b291;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 	box-shadow: rgba(255, 255, 255, 0.4) 0px 20px 70px 2px;
 	transition: all 0.2s;
