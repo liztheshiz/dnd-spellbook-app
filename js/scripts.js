@@ -3,9 +3,12 @@ let spellsRepository = (function() {
 	// >>VARIABLES<< //
 	let spellsList = []; // Initialize spellsList
 	let apiUrl = 'https://www.dnd5eapi.co/api/spells/';
-	let spellKeys = ['name', 'detailsUrl', 'level', 'school', 'castingTime', 'range', 'duration', 'areaOfEffect', 'classes', 'description', 'higherLevel']; // Accepted list of keys in spell objects in spellsList
+	let spellKeys = ['index', 'name', 'detailsUrl', 'level', 'school', 'castingTime', 'range', 'duration', 'areaOfEffect', 'classes', 'description', 'higherLevel']; // Accepted list of keys in spell objects in spellsList
 	let spellsGrid = document.querySelector('.spells-grid'); // Selects .spells-grid in DOM
 	let loadingMessage = document.querySelector('.overlay'); // Selects .loading-message in DOM
+	let searchInput = document.querySelector('.search-bar_input');
+	let searchButton = document.querySelector('.search-bar_button');
+
 	let modalContainer = document.querySelector('#modal-container'); // Selects #modal-container in the DOM
 
 	let showMoreButton = document.querySelector('.show-more-button');
@@ -38,13 +41,14 @@ let spellsRepository = (function() {
 
 	// Returns spell object with given name
 	function findSpell(name) {
-		// Create array of spells with given name
-		let givenSpell = spellsList.filter(element => element.name === name);
+		// First normalize search input to match index formatting
+		let formattedName = name.replace(/\s+/g, '-').toLowerCase();
+		let givenSpell = spellsList.filter(element => element.index === formattedName);
 		// Returns either single spell object, or array of objects if >1 spells with same name
 		if (givenSpell.length === 1) {
 			return givenSpell[0];
-		} else if (givenSpell.length > 1) {
-			return givenSpell;
+		} else {
+			return null;
 		}
 	}
 
@@ -84,6 +88,7 @@ let spellsRepository = (function() {
 	    }).then(function (json) {
 	      	json.results.forEach(function (item) {
 	        	let spell = {
+		          	index: item.index,
 		          	name: item.name,
 		          	detailsUrl: `https://www.dnd5eapi.co${item.url}`
 	        	};
@@ -182,6 +187,17 @@ let spellsRepository = (function() {
 			hideModal();
 		}
 	});
+
+	searchButton.addEventListener('click', (e) => {
+		let searchValue = searchInput.value;
+		let spell = findSpell(searchValue);
+
+		if (spell) {
+			showDetails(spell);
+		} else {
+			alert('Spell not found! Please check your... "spell"-ing.');
+		}
+	})
 
 	return {getAll, add, findSpell, addListItem, loadList, loadDetails, loadingMessageHidden}
 })();
